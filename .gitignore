@@ -11,3 +11,4 @@ run/
 *.sw*
 *.un~
 front/node_modules/
+bower_components/
