@@ -1,0 +1,48 @@
+html{
+    font-size: 20px;
+}
+body{
+    font-size: 1rem;
+    width: 100%;
+    overflow-x: hidden;
+}
+.row{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+.login-footer{
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    width: 100%;
+    padding: 0 50px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.footer-menu-block{
+    line-height: 50px;
+}
+.home-container{
+    color: #fff !important;
+}
+.carousel{
+    height: 200px;
+    margin: 0 0 10px;
+}
+.carousel img{
+    height: 200px !important;
+}
+.home-menu-block{
+    height: 100px;
+    line-height: 100px;
+    color: #fff !important;
+    font-size: 0.8rem;
+}
