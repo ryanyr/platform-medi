@@ -1,0 +1,10 @@
+{% extends "template.html"%}
+{% block content %}
+{% include "../navtop.html"%}
+<div class="postlist">
+    {% for post in posts %}
+    <li>{{post.id}}{{post.content}}</li>
+    {% endfor%}
+</div>
+
+{% endblock%}

@@ -6,6 +6,13 @@ body{
     width: 100%;
     overflow-x: hidden;
 }
+a{
+    color: #fff !important;
+}
+a:link,a:hover,a:visited,a:active{
+    color: #fff !important;
+    text-decoration: none;
+}
 .row{
     margin: 0;
     padding: 0;
