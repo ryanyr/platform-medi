@@ -18,7 +18,7 @@ module.exports = appInfo => {
     cache: true, // local env is false
   };
 
-   config.mysql = {
+   /* config.mysql = {
     // 单数据库信息配置
     client: {
       // host
@@ -36,6 +36,16 @@ module.exports = appInfo => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
+  }; */
+
+  exports.sequelize = {
+    dialect: 'mysql',
+    database: 'egg',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: 'root'
+
   };
  
   return config;
