@@ -1,6 +1,25 @@
-{% extends "template.html"%}
-{% block content %}
+{% extends "template.html"%} 
+{% block content %} 
 {% include "../navtop.html"%}
+<div class="searchCondition">
+        <div class="row">
+            <div class="col-3 top-menu-block">
+                选择省份
+            </div>
+            <div class="col-3 top-menu-block">
+                选择学科
+            </div>
+            <div class="col-3 top-menu-block">
+                选择年份
+            </div>
+            <div class="col-3 top-menu-block">
+                选择月份
+            </div>
+        </div>
+</div>
+<div class="search">
+
+</div>
 <div class="postlist">
     {% for post in posts %}
     <li>{{post.id}}{{post.content}}</li>
