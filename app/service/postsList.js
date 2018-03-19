@@ -6,6 +6,7 @@ class PostsListService extends Service{
         const posts = await this.app.model.Post.findAll();
         return posts;
     }
+
 }
 
 module.exports = PostsListService;

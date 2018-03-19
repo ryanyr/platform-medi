@@ -10,6 +10,10 @@ module.exports = app => {
 
   //client
   router.get('/monthy', controller.client.post.getAllPosts);
+  router.get('/getAllDistricts', controller.client.post.getDistrict);
+
+
+
 
   //admin
 
