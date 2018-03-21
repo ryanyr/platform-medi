@@ -18,8 +18,8 @@ class postController extends Controller {
   async getDistrict(){
     var districts = await this.ctx.service.postsList.getAllDistricts();
     // console.log(districts);
-    ctx.body = {districts: districts};
-    ctx.status = 200;
+    this.ctx.body = {districts: districts};
+    this.ctx.status = 200;
   }
   
 }
