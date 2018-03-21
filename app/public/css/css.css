@@ -2,7 +2,7 @@ html{
     font-size: 20px;
 }
 body{
-    font-size: 1rem;
+    font-size: 0.6rem;
     width: 100%;
     overflow-x: hidden;
 }
@@ -58,4 +58,32 @@ a:link,a:hover,a:visited,a:active{
 }
 .search{
     margin: 10px;
+}
+.login-top{
+    width: 100%;
+    height: 2rem;
+    background: #007bff;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    line-height: 2rem;
+
+}
+.top-menu-block{
+    text-align: center;
+    font-size: 0.8rem;
+}
+.center-menu-block{
+    text-align: center;
+    font-size: 0.7rem;
+}
+.sideNav{
+    position: absolute;
+    width: 5rem;
+    height: auto;
+    background: #333;
+    right: 0;
+    color: #fff;
+    
+    
 }

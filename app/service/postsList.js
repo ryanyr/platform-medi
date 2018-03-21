@@ -12,7 +12,24 @@ class PostsListService extends Service{
         const districts = dataSource.district;
         console.log(districts);
         return districts;
+    }
 
+    async getAllDepartments(){
+        const departments = dataSource.department;
+        console.log(departments);
+        return departments;
+    }
+
+    async getAllYears(){
+        const years = dataSource.year;
+        console.log(years);
+        return years;
+    }
+
+    async getAllMonths(){
+        const months = dataSource.month;
+        console.log(months);
+        return months;
     }
 
 }
