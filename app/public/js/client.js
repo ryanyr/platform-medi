@@ -7,6 +7,13 @@ $(function(){
             url:'/getAllDistricts',
             method:'get'
         }).done(function(data){
+            $('.sideNav').find('ul').html('');
+            var districts = data.districts;
+            for(var i =0;i<districts.length;i++){
+                var item = $('<li class="navitem">'+districts[i]+'</li>');
+                $('.sideNav').find('ul').append(item);
+            }
+            $('.sideNav').animate({right:0},200,'swing');
             console.log(data);
         }).fail(function(err){
             console.log(err);
@@ -18,6 +25,13 @@ $(function(){
             url:'/getAllDepartments',
             method:'get'
         }).done(function(data){
+            $('.sideNav').find('ul').html('');
+            var districts = data.districts;
+            for(var i =0;i<districts.length;i++){
+                var item = $('<li class="navitem">'+districts[i]+'</li>');
+                $('.sideNav').find('ul').append(item);
+            }
+            $('.sideNav').animate({right:0},200,'swing');
             console.log(data);
         }).fail(function(err){
             console.log(err);
