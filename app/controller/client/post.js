@@ -22,23 +22,23 @@ class postController extends Controller {
   }
 
   async getDepartment(){
-    var districts = await this.ctx.service.postsList.getAllDepartments();
+    var departments = await this.ctx.service.postsList.getAllDepartments();
     // console.log(districts);
-    this.ctx.body = {districts: districts};
+    this.ctx.body = {departments: departments};
     this.ctx.status = 200;
   }
 
   async getYear(){
-    var districts = await this.ctx.service.postsList.getAllYears();
+    var years = await this.ctx.service.postsList.getAllYears();
     // console.log(districts);
-    this.ctx.body = {districts: districts};
+    this.ctx.body = {years: years};
     this.ctx.status = 200;
   }
 
   async getMonth(){
-    var districts = await this.ctx.service.postsList.getAllMonths();
+    var months = await this.ctx.service.postsList.getAllMonths();
     // console.log(districts);
-    this.ctx.body = {districts: districts};
+    this.ctx.body = {months: months};
     this.ctx.status = 200;
   }
   
