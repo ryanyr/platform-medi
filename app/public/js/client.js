@@ -1,12 +1,31 @@
+//crsf token
+var csrftoken = getcookie('csrfToken');
+
+function getcookie(objname){//获取指定名称的cookie的值
+    var arrstr = document.cookie.split("; ");
+    for(var i = 0;i < arrstr.length;i ++){
+    var temp = arrstr[i].split("=");
+    if(temp[0] == objname) return unescape(temp[1]);
+    }
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+} 
+
 function chooseDistrictItem(obj){
     var item = obj.innerHTML;
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectDistrict').text(item);
         var searchObj = {
-
+            district:item,
+            department:'',
+            year:'',
+            month:''
         }
-        getPosts();
+        getPosts(searchObj);
     });
     
 }
@@ -33,6 +52,36 @@ function chooseMonthItem(obj){
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectMonth').text(item);
     });
+}
+
+function getPosts(obj){
+    console.log(111);
+    var district = obj.district;
+    var department = obj.department;
+    var year = obj.year;
+    var month = obj.month;
+    var posts = [];
+    var formData = new FormData();
+    formData.append('district',obj.district);
+    formData.append('department',obj.district);
+    formData.append('year',obj.year);
+    formData.append('month',obj.month);
+    $.ajax({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader('x-csrf-token', csrftoken);
+            }
+          },
+        url:'/getPosts',
+        method:'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+    }).done(function(data){
+        console.log(1);
+    }).fail(function(data){
+        console.log(2);
+    })
 }
 
 

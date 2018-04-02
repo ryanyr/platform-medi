@@ -41,6 +41,17 @@ class postController extends Controller {
     this.ctx.body = {months: months};
     this.ctx.status = 200;
   }
+
+  async getPosts(){
+    var req = this.ctx.request;
+    // var req = this.ctx.request;
+    console.log(req);
+    // var months = await this.ctx.service.postsList.getPosts();
+    // // console.log(districts);
+    // this.ctx.body = {posts: posts};
+    // this.ctx.status = 200;
+  }
+
   
 }
 

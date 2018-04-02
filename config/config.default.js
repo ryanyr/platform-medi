@@ -18,6 +18,17 @@ module.exports = appInfo => {
     cache: true, // local env is false
   };
 
+  config.security = {
+    csrf: {
+      queryName: '_csrf', // 通过 query 传递 CSRF token 的默认字段为 _csrf
+      bodyName: '_csrf', // 通过 body 传递 CSRF token 的默认字段为 _csrf
+      headerName: 'x-csrf-token', // 通过 header 传递 CSRF token 的默认字段为 x-csrf-token
+      useSession: false, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
+      cookieName: 'csrfToken', // Cookie 中的字段名，默认为 csrfToken
+      sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
+    }
+  };
+
    /* config.mysql = {
     // 单数据库信息配置
     client: {
