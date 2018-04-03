@@ -42,14 +42,40 @@ class postController extends Controller {
     this.ctx.status = 200;
   }
 
-  async getPosts(){
-    var req = this.ctx.request;
-    // var req = this.ctx.request;
+  async getPostsByDistrict(){
+    var req = await this.ctx.request.query;
     console.log(req);
-    // var months = await this.ctx.service.postsList.getPosts();
-    // // console.log(districts);
-    // this.ctx.body = {posts: posts};
-    // this.ctx.status = 200;
+    var posts = await this.ctx.service.postsList.getPostsByDistrict(req);
+    console.log(posts);
+    this.ctx.body = {posts: posts};
+    this.ctx.status = 200;
+  }
+
+  async getPostsByDepartment(){
+    var req = await this.ctx.request.query;
+    console.log(req);
+    var posts = await this.ctx.service.postsList.getPostsByDepartment(req);
+    console.log(districts);
+    this.ctx.body = {posts: posts};
+    this.ctx.status = 200;
+  }
+
+  async getPostsByYear(){
+    var req = await this.ctx.request.query;
+    console.log(req);
+    var posts = await this.ctx.service.postsList.getPostsByYear(req);
+    console.log(districts);
+    this.ctx.body = {posts: posts};
+    this.ctx.status = 200;
+  }
+
+  async getPostsByMonth(){
+    var req = await this.ctx.request.query;
+    console.log(req);
+    var posts = await this.ctx.service.postsList.getPostsByMonth(req);
+    console.log(districts);
+    this.ctx.body = {posts: posts};
+    this.ctx.status = 200;
   }
 
   

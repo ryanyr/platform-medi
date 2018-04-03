@@ -38,9 +38,49 @@ class PostsListService extends Service{
         return months;
     }
 
-    async getPosts(){
+    async getPostsByDistrict(req){
+        var params = req;
         const posts = await this.app.model.Post.findAll({
+            where: { province: params.district } 
+        });
+        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
 
+    async getPostsByDepartment(req){
+        var params = req;
+        const posts = await this.app.model.Post.findAll({
+            where: { province: params.district } 
+        });
+        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
+    async getPostsByYear(req){
+        var params = req;
+        const posts = await this.app.model.Post.findAll({
+            where: { meeting_time: params.district } 
+        });
+        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
+    async getPostsByMonth(req){
+        var params = req;
+        const posts = await this.app.model.Post.findAll({
+            where: { province: params.district } 
         });
         
         for(var i=0; i<posts.length; i++){             

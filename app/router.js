@@ -14,7 +14,10 @@ module.exports = app => {
   router.get('/getAllDepartments', controller.client.post.getDepartment);
   router.get('/getAllYears', controller.client.post.getYear);
   router.get('/getAllMonths', controller.client.post.getMonth);
-  router.post('/getPosts', controller.client.post.getPosts);
+  router.get('/getPostsByDistrict', controller.client.post.getPostsByDistrict);
+  router.get('/getPostsByDepartment', controller.client.post.getPostsByDepartment);
+  router.get('/getPostsByYear', controller.client.post.getPostsByYear);
+  router.get('/getPostsByMonth', controller.client.post.getPostsByMonth);
 
 
 

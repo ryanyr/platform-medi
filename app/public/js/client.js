@@ -19,13 +19,7 @@ function chooseDistrictItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectDistrict').text(item);
-        var searchObj = {
-            district:item,
-            department:'',
-            year:'',
-            month:''
-        }
-        getPosts(searchObj);
+        getPosts('district',{'district':item});
     });
     
 }
@@ -35,6 +29,7 @@ function chooseDepartmentItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectDepartment').text(item);
+        getPosts('department',item);
     });
 }
 
@@ -43,6 +38,7 @@ function chooseYearItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectYear').text(item);
+        getPosts('year',item);
     });
 }
 
@@ -51,21 +47,17 @@ function chooseMonthItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectMonth').text(item);
+        getPosts('month',item);
     });
 }
 
-function getPosts(obj){
-    console.log(111);
+/* function getPosts(obj){
+    console.log(obj);
     var district = obj.district;
     var department = obj.department;
     var year = obj.year;
     var month = obj.month;
     var posts = [];
-    var formData = new FormData();
-    formData.append('district',obj.district);
-    formData.append('department',obj.district);
-    formData.append('year',obj.year);
-    formData.append('month',obj.month);
     $.ajax({
         beforeSend: function(xhr, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -73,8 +65,8 @@ function getPosts(obj){
             }
           },
         url:'/getPosts',
-        method:'post',
-        data: formData,
+        method:'get',
+        data: obj,
         contentType: false,
         processData: false,
     }).done(function(data){
@@ -82,8 +74,39 @@ function getPosts(obj){
     }).fail(function(data){
         console.log(2);
     })
-}
+} */
 
+function getPosts(type,data){
+    // console.log(type);
+    var posts = [];
+    var url = '';
+    switch(type){
+        case 'district':
+            url = '/getPostsByDistrict';
+            break;
+        case 'district':
+            url = '/getPostsByDepartment';
+            break;
+        case 'district':
+            url = '/getPostsByYear';
+            break;
+        case 'district':
+            url = '/getPostsByMonth';
+            break;
+        default:break;
+    }
+    $.ajax({
+        url: url,
+        method:'get',
+        data: data
+    }).done(function(data){
+        console.log(data.posts);
+        posts =  data.posts;
+    }).fail(function(data){
+        console.log('err');
+    })
+    
+}
 
 $(function(){
        
