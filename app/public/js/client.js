@@ -141,7 +141,8 @@ function getAllPosts(obj){
           },
         url:'/getPostsByAll',
         method:'get',
-        data: obj,
+        // datatype: 'json',
+        data : 'district=' + obj.district + '&department='+obj.department+'&year='+obj.year+'&month='+obj.month,
         contentType: false,
         processData: false,
     }).done(function(data){
