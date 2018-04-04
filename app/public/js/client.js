@@ -16,39 +16,140 @@ function csrfSafeMethod(method) {
 
 function chooseDistrictItem(obj){
     var item = obj.innerHTML;
+    var district = item;
+    var department = $('#selectDepartment').text();
+    var year = $('#selectYear').text();
+    var month = $('#selectMonth').text();
+    if(department=='选择学科'||department=='不限学科'){
+        department = '';
+    }
+    if(year=='选择年份'||year=='不限年份'){
+        year = '';
+    }
+    if(month=='选择月份'||month=='不限月份'){
+        month = '';
+    }
+    var req = {
+        district:item,
+        department:department,
+        year:year,
+        month:month
+    }
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectDistrict').text(item);
-        getPosts('district',{'district':item});
+        // getPosts('district',{'district':item});
+        getAllPosts(req);
     });
     
 }
 
 function chooseDepartmentItem(obj){
     var item = obj.innerHTML;
+    var department = item;
+    var district = $('#selectDistrict').text();
+    var year = $('#selectYear').text();
+    var month = $('#selectMonth').text();
+    if(district=='选择省份'||district=='不限省份'){
+        district = '';
+    }
+    if(year=='选择年份'||year=='不限年份'){
+        year = '';
+    }
+    if(month=='选择月份'||month=='不限月份'){
+        month = '';
+    }
+    var req = {
+        district:district,
+        department:department,
+        year:year,
+        month:month
+    }
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectDepartment').text(item);
-        getPosts('department',{'department':item});
+        // getPosts('department',{'department':item});
+        getAllPosts(req);
     });
 }
 
 function chooseYearItem(obj){
     var item = obj.innerHTML;
+    var year = item;
+    var district = $('#selectDistrict').text();
+    var department = $('#selectDepartment').text();
+    var month = $('#selectMonth').text();
+    if(district=='选择省份'||district=='不限省份'){
+        district = '';
+    }
+    if(department=='选择学科'||department=='不限学科'){
+        department = '';
+    }
+    if(month=='选择月份'||month=='不限月份'){
+        month = '';
+    }
+    var req = {
+        district:district,
+        department:department,
+        year:year,
+        month:month
+    }
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectYear').text(item);
-        getPosts('year',{'year':item});
+        // getPosts('year',{'year':item});
+        getAllPosts(req);
     });
 }
 
 function chooseMonthItem(obj){
     var item = obj.innerHTML;
+    var month = item;
+    var district = $('#selectDistrict').text();
+    var department = $('#selectDepartment').text();
+    var year = $('#selectYear').text();
+    if(district=='选择省份'||district=='不限省份'){
+        district = '';
+    }
+    if(department=='选择学科'||department=='不限学科'){
+        department = '';
+    }
+    if(year=='选择年份'||year=='不限年份'){
+        year = '';
+    }
+    var req = {
+        district:district,
+        department:department,
+        year:year,
+        month:month
+    }
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectMonth').text(item);
-        getPosts('month',{'month':item});
+        // getPosts('month',{'month':item});
+        getAllPosts(req);
     });
+}
+
+function getAllPosts(obj){
+    console.log(obj);
+    $.ajax({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader('x-csrf-token', csrftoken);
+            }
+          },
+        url:'/getPostsByAll',
+        method:'get',
+        data: obj,
+        contentType: false,
+        processData: false,
+    }).done(function(data){
+        console.log(1);
+    }).fail(function(data){
+        console.log(2);
+    })
+    
 }
 
 /* function getPosts(obj){

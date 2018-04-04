@@ -66,7 +66,7 @@ class PostsListService extends Service{
 
     async getPostsByYear(req){
         var params = req;
-        var year = (params.year);
+        var year = params.year;
         console.log(year);
         var start = new Date(year,0,1,0,0,0);
         var fin = new Date(year,11,31,23,59,59);
@@ -77,6 +77,7 @@ class PostsListService extends Service{
                 //中文文档内使用[Op.between],chm in En 使用$between
                 $between:[start,fin]
             } }
+            //limit:10
         });        
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
@@ -87,10 +88,33 @@ class PostsListService extends Service{
 
     async getPostsByMonth(req){
         var params = req;
+        var month = params.month;
         const posts = await this.app.model.Post.findAll({
             where: { province: params.district } 
         });
         
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
+    async getPostsByAll(req){
+        var params = req;
+        var year = params.year;
+        console.log(year);
+        var start = new Date(year,0,1,0,0,0);
+        var fin = new Date(year,11,31,23,59,59);
+        console.log(start);
+        console.log(fin);
+        const posts = await this.app.model.Post.findAll({
+            where: { meeting_time: {
+                //中文文档内使用[Op.between],chm in En 使用$between
+                $between:[start,fin]
+            } }
+            //limit:10
+        });        
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
             posts[i].meetingTime = formatTime;

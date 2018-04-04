@@ -78,6 +78,15 @@ class postController extends Controller {
     this.ctx.status = 200;
   }
 
+  async getPostsByAll(){
+    var req = await this.ctx.request.query;
+    console.log(req);
+    var posts = await this.ctx.service.postsList.getPostsByAll(req);
+    console.log(posts);
+    this.ctx.body = {posts: posts};
+    this.ctx.status = 200;
+  }
+
   
 }
 

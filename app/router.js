@@ -18,6 +18,7 @@ module.exports = app => {
   router.get('/getPostsByDepartment', controller.client.post.getPostsByDepartment);
   router.get('/getPostsByYear', controller.client.post.getPostsByYear);
   router.get('/getPostsByMonth', controller.client.post.getPostsByMonth);
+  router.get('/getPostsByAll', controller.client.post.getPostsByAll);
 
 
 
