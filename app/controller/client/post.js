@@ -55,7 +55,7 @@ class postController extends Controller {
     var req = await this.ctx.request.query;
     console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByDepartment(req);
-    console.log(districts);
+    console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
@@ -64,7 +64,7 @@ class postController extends Controller {
     var req = await this.ctx.request.query;
     console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByYear(req);
-    console.log(districts);
+    console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
@@ -73,7 +73,7 @@ class postController extends Controller {
     var req = await this.ctx.request.query;
     console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByMonth(req);
-    console.log(districts);
+    console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }

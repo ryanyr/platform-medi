@@ -29,7 +29,7 @@ function chooseDepartmentItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectDepartment').text(item);
-        getPosts('department',item);
+        getPosts('department',{'department':item});
     });
 }
 
@@ -38,7 +38,7 @@ function chooseYearItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectYear').text(item);
-        getPosts('year',item);
+        getPosts('year',{'year':item});
     });
 }
 
@@ -47,7 +47,7 @@ function chooseMonthItem(obj){
     // console.log(item);
     $('.sideNav').animate({right:'-5rem'},200,'swing',function(){
         $('#selectMonth').text(item);
-        getPosts('month',item);
+        getPosts('month',{'month':item});
     });
 }
 
@@ -84,13 +84,13 @@ function getPosts(type,data){
         case 'district':
             url = '/getPostsByDistrict';
             break;
-        case 'district':
+        case 'department':
             url = '/getPostsByDepartment';
             break;
-        case 'district':
+        case 'year':
             url = '/getPostsByYear';
             break;
-        case 'district':
+        case 'month':
             url = '/getPostsByMonth';
             break;
         default:break;
