@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 //crsf token
 var csrftoken = getcookie('csrfToken');
 
@@ -133,6 +135,7 @@ function chooseMonthItem(obj){
 
 function getAllPosts(obj){
     console.log(obj);
+    //可以 stringify在封装obj传输后端解析parse
     $.ajax({
         beforeSend: function(xhr, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
