@@ -1,5 +1,3 @@
-import { stringify } from "querystring";
-
 //crsf token
 var csrftoken = getcookie('csrfToken');
 
