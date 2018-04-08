@@ -1,0 +1,16 @@
+{% extends "template.html"%} {% block content %} {% include "../navtop.html"%}
+
+<div class="postlist">
+    <div class="list-group">
+        <a href="/post?id={{post.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+            <p class="title">{{post.title}}</p>            
+            </div>
+            <p class="time">{{post.meetingTime}}</p>
+            <p class="content">{{post.content}}</p>
+            <p class="location">{{post.province}}-{{post.city}}</p>
+        </a>
+    </div>
+</div>
+
+{% endblock%}

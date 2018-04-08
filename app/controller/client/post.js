@@ -87,6 +87,17 @@ class postController extends Controller {
     this.ctx.status = 200;
   }
 
+  async getPostDetail(){
+    var postid = await this.ctx.request.query;
+    console.log(postid);
+    var post = await this.ctx.service.postsList.getPostDetail(postid);
+    console.log(post);
+    await this.ctx.render('client/post.html', {
+      post:post,
+      title: '会议详情',
+    });
+  }
+
   
 }
 

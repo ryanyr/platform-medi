@@ -137,6 +137,17 @@ class PostsListService extends Service{
         return posts;
     }
 
+    async getPostDetail(data){
+        var postid = data.id;
+        console.log(postid);
+        const post = await this.app.model.Post.find({
+            where: { id: postid } 
+        });
+        var formatTime = format.formatDate(post.meeting_time);
+        post.meetingTime = formatTime;
+        return post;
+    }
+
 }
 
 module.exports = PostsListService;
