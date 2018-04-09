@@ -2,14 +2,14 @@
 
 <div class="postlist">
     <div class="list-group">
-        <a href="/post?id={{post.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-            <p class="title">{{post.title}}</p>            
-            </div>
-            <p class="time">{{post.meetingTime}}</p>
-            <p class="content">{{post.content}}</p>
-            <p class="location">{{post.province}}-{{post.city}}</p>
-        </a>
+        <div class="list-group-item list-group-item-action flex-column align-items-start"></a>
+            <h3 class="title text-center">{{post.title}}</h3>            
+            <hr/>
+            <p class="time">会议时间：{{post.meetingTime}}</p>
+            <p class="content">简介：{{post.intro}}</p>
+            <p class="content">内容：{{post.content}}</p>
+            <p class="location">地点：{{post.province}}-{{post.city}}</p>
+        </div>
     </div>
 </div>
 

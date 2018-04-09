@@ -9,6 +9,8 @@ module.exports = app => {
       },
       userid:BIGINT(11),
       title:STRING,
+      department:STRING,
+      intro:TEXT,
       content:TEXT,
       province:STRING,
       city:STRING,                      

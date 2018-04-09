@@ -71,6 +71,9 @@ body{
     line-height: 2rem;
 
 }
+.login-top a{
+    color: #fff !important;
+}
 .top-menu-block{
     text-align: center;
     font-size: 0.8rem;

@@ -168,7 +168,7 @@ function displayPost(data){
                         '<p class="title">'+ data[i].title +'</p>'+            
                         '</div>'+
                         '<p class="time">' + data[i].meeting_time +'</p>'+
-                        '<p class="content">' + data[i].content + '</p>' +
+                        '<p class="content">' + data[i].intro + '</p>' +
                         '<p class="location">' + data[i].province +'-' + data[i].city +'</p>'+
                     '</a>';
         post +=item;

@@ -14,6 +14,36 @@ class postController extends Controller {
 
   }
 
+  async getMonthyPosts() {
+
+    var posts = await this.ctx.service.postsList.getMonthyPosts();
+    await this.ctx.render('client/monthList.html', {
+      posts:posts,
+      title: '本月会议',
+    });
+
+  }
+
+  async getMedia() {
+
+    var posts = await this.ctx.service.postsList.getMedia();
+    await this.ctx.render('client/media.html', {
+      posts:posts,
+      title: '视频列表',
+    });
+
+  }
+
+  async getDoctors() {
+
+    var posts = await this.ctx.service.postsList.getDoctors();
+    await this.ctx.render('client/doctors.html', {
+      posts:posts,
+      title: '专家学者',
+    });
+
+  }
+
   async getDistrict(){
     var districts = await this.ctx.service.postsList.getAllDistricts();
     // console.log(districts);

@@ -9,7 +9,12 @@ module.exports = app => {
   router.get('/', controller.home.index);
 
   //client
-  router.get('/monthy', controller.client.post.getAllPosts);
+  router.get('/hot', controller.client.post.getAllPosts);
+  router.get('/monthy', controller.client.post.getMonthyPosts);
+  router.get('/all', controller.client.post.getAllPosts);
+  router.get('/media', controller.client.post.getMedia);
+  router.get('/doctors', controller.client.post.getDoctors);
+
   router.get('/getAllDistricts', controller.client.post.getDistrict);
   router.get('/getAllDepartments', controller.client.post.getDepartment);
   router.get('/getAllYears', controller.client.post.getYear);

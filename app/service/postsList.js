@@ -148,6 +148,36 @@ class PostsListService extends Service{
         return post;
     }
 
+    async getMonthyPosts(){
+        const posts = await this.app.model.Post.findAll();
+        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
+    async getMedia(){
+        const posts = await this.app.model.Post.findAll();
+        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
+    async getDoctors(){
+        const posts = await this.app.model.Post.findAll();
+        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
 }
 
 module.exports = PostsListService;

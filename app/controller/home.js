@@ -10,7 +10,7 @@ class HomeController extends Controller {
       user: {
         name: 'foobar',
       },
-      title: 'egg view example',
+      title: '医疗会议查询平台',
     });
 
   }
