@@ -163,7 +163,7 @@ class PostsListService extends Service{
     }
 
     async getMedia(){
-        const posts = await this.app.model.Post.findAll();
+        const posts = await this.app.model.Media.findAll();
         
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
@@ -176,8 +176,8 @@ class PostsListService extends Service{
         const posts = await this.app.model.Post.findAll();
         
         for(var i=0; i<posts.length; i++){             
-            var formatTime = format.formatDate(posts[i].meeting_time);
-            posts[i].meetingTime = formatTime;
+            var formatTime = format.formatDate(posts[i].post_time);
+            posts[i].post_time = formatTime;
         }
         return posts;
     }
