@@ -148,11 +148,11 @@ function getAllPosts(obj){
         processData: false,
     }).done(function(data){
         var data = data.posts;
-        if(data.length>0){
+        // if(data.length>0){
             console.log(1);
             console.log(data);
             displayPost(data);
-        }        
+        // }        
     }).fail(function(data){
         console.log(err);
         alert('error');
@@ -162,17 +162,22 @@ function getAllPosts(obj){
 function displayPost(data){
     $('.list-group').empty();
     var post = '';
-    for(var i=0;i<data.length;i++){
-        var item = '<a href="/post?id='+ data[i].id +'" class="list-group-item list-group-item-action flex-column align-items-start">'+
-                        '<div class="d-flex w-100 justify-content-between">'+
-                        '<p class="title">'+ data[i].title +'</p>'+            
-                        '</div>'+
-                        '<p class="time">' + data[i].meeting_time +'</p>'+
-                        '<p class="content">' + data[i].intro + '</p>' +
-                        '<p class="location">' + data[i].province +'-' + data[i].city +'</p>'+
-                    '</a>';
-        post +=item;
+    if(data.length>0){
+        for(var i=0;i<data.length;i++){
+            var item = '<a href="/post?id='+ data[i].id +'" class="list-group-item list-group-item-action flex-column align-items-start">'+
+                            '<div class="d-flex w-100 justify-content-between">'+
+                            '<p class="title">'+ data[i].title +'</p>'+            
+                            '</div>'+
+                            '<p class="time">' + data[i].meeting_time +'</p>'+
+                            '<p class="content">' + data[i].intro + '</p>' +
+                            '<p class="location">' + data[i].province +'-' + data[i].city +'</p>'+
+                        '</a>';
+            post +=item;
+        }
+    }else{
+        post = '<div class="list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between">暂无数据</div></div>';
     }
+    
     $('.list-group').html(post);
 }
 
