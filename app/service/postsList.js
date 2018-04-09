@@ -150,7 +150,11 @@ class PostsListService extends Service{
 
     async getMonthyPosts(){
         const posts = await this.app.model.Post.findAll();
-        
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var start = new Date(year,month,1,0,0,0);
+        var fin = new Date(year,month,31,23,59,59);
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
             posts[i].meetingTime = formatTime;
