@@ -8,7 +8,7 @@ module.exports = app => {
         unique : true
       },
       userid:BIGINT(11),
-      poster:STRING,
+      author:STRING,
       title:STRING,
       department:STRING,
       intro:TEXT,
