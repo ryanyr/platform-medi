@@ -67,11 +67,11 @@ class PostsListService extends Service{
     async getPostsByYear(req){
         var params = req;
         var year = params.year;
-        console.log(year);
+        // console.log(year);
         var start = new Date(year,0,1,0,0,0);
         var fin = new Date(year,11,31,23,59,59);
-        console.log(start);
-        console.log(fin);
+        // console.log(start);
+        // console.log(fin);
         const posts = await this.app.model.Post.findAll({
             where: { meeting_time: {
                 //中文文档内使用[Op.between],chm in En 使用$between
@@ -125,7 +125,7 @@ class PostsListService extends Service{
         /* if(!!month){
             queryObj.month = month;
         } */
-        console.log(queryObj);
+        // console.log(queryObj);
         const posts = await this.app.model.Post.findAll({
             where: queryObj
             //limit:10
@@ -139,7 +139,7 @@ class PostsListService extends Service{
 
     async getPostDetail(data){
         var postid = data.id;
-        console.log(postid);
+        // console.log(postid);
         const post = await this.app.model.Post.find({
             where: { id: postid } 
         });
@@ -154,8 +154,8 @@ class PostsListService extends Service{
         var month = date.getMonth();
         var start = new Date(year,month,1,0,0,0);
         var fin = new Date(year,month,31,23,59,59);
-        console.log(start);
-        console.log(fin);
+        // console.log(start);
+        // console.log(fin);
         const posts = await this.app.model.Post.findAll({
             where:{
                 meeting_time:{
@@ -171,23 +171,19 @@ class PostsListService extends Service{
     }
 
     async getMedia(){
-        const posts = await this.app.model.Media.findAll();
+        const media = await this.app.model.Media.findAll();
         
-        for(var i=0; i<posts.length; i++){             
-            var formatTime = format.formatDate(posts[i].meeting_time);
-            posts[i].meetingTime = formatTime;
+        for(var i=0; i<media.length; i++){             
+            var formatTime = format.formatDate(media[i].post_time);
+            media[i].post_time = formatTime;
         }
-        return posts;
+        return media;
     }
 
     async getDoctors(){
-        const posts = await this.app.model.Post.findAll();
+        const doctors = await this.app.model.User.findAll();
         
-        for(var i=0; i<posts.length; i++){             
-            var formatTime = format.formatDate(posts[i].post_time);
-            posts[i].post_time = formatTime;
-        }
-        return posts;
+        return doctors;
     }
 
 }

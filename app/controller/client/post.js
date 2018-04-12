@@ -74,54 +74,54 @@ class postController extends Controller {
 
   async getPostsByDistrict(){
     var req = await this.ctx.request.query;
-    console.log(req);
+    // console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByDistrict(req);
-    console.log(posts);
+    // console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
 
   async getPostsByDepartment(){
     var req = await this.ctx.request.query;
-    console.log(req);
+    // console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByDepartment(req);
-    console.log(posts);
+    // console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
 
   async getPostsByYear(){
     var req = await this.ctx.request.query;
-    console.log(req);
+    // console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByYear(req);
-    console.log(posts);
+    // console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
 
   async getPostsByMonth(){
     var req = await this.ctx.request.query;
-    console.log(req);
+    // console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByMonth(req);
-    console.log(posts);
+    // console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
 
   async getPostsByAll(){
     var req = await this.ctx.request.query;
-    console.log(req);
+    // console.log(req);
     var posts = await this.ctx.service.postsList.getPostsByAll(req);
-    console.log(posts);
+    // console.log(posts);
     this.ctx.body = {posts: posts};
     this.ctx.status = 200;
   }
 
   async getPostDetail(){
     var postid = await this.ctx.request.query;
-    console.log(postid);
+    // console.log(postid);
     var post = await this.ctx.service.postsList.getPostDetail(postid);
-    console.log(post);
+    // console.log(post);
     await this.ctx.render('client/post.html', {
       post:post,
       title: '会议详情',

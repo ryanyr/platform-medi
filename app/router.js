@@ -27,8 +27,10 @@ module.exports = app => {
   router.get('/post', controller.client.post.getPostDetail);
 
 
-
-
   //admin
+  router.get('/admin/', controller.admin.adminPost.login);
+  router.get('/admin/login', controller.admin.adminPost.login);
+  router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
+  router.get('/admin/index', controller.admin.adminPost.home);
 
 };

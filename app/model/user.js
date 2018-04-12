@@ -9,7 +9,7 @@ module.exports = app => {
         unique : true
       },
       role: {
-        type: INTEGER,
+        type: INTEGER,//0普通用户，1管理人员，2医生学者
         default: 0
       },
       name: STRING(30),
