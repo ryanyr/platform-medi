@@ -5,13 +5,13 @@
 <script src="../public/js/util.js"></script>
 
 <div class="container text-center admin-container">
-    <form class="form-signin">
+    <form class="form-signin" id='form-signin'>
         <h1 class="h3 mb-3 font-weight-normal">平台管理端</h1>
         <label for="inputEmail" class="sr-only">用户名</label>
         <input type="text" id="inputAccount" class="form-control" placeholder="请输入用户名" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
-        <button class="btn btn-lg btn-primary btn-block" id="submit" onclick="doLogin()">登录</button>
+        <span class="btn btn-lg btn-primary btn-block" id="submit" onclick="doLogin()">登录</span>
         <p class="mt-5 mb-3 text-muted">&copy;2018-2019</p>
       </form>
 </div>
