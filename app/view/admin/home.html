@@ -3,7 +3,22 @@
 <script src="../public/js/carousel.js"></script>
 <script src="../public/js/util.js"></script>
 
-<div class="container text-center admin-container">
-    111
+<div class="text-center admin-container">
+    <nav class="navbar">
+        <span>平台管理端</span>
+        <ul>
+            <li><a href="/admin/login">admin</a></li>
+            <li><a href="/admin/modifycode">修改密码</a></li>
+            <li><a href="/admin/logout">退出</a></li>
+        </ul>
+    </nav>
+    <div class="sidebar">
+        <div class="menu">用户管理</div>
+        <div class="menu">会议管理</div>
+        <div class="menu">视频管理</div>
+        <div class="menu">专家管理</div>
+        <div class="menu">系统管理</div>
+    </div>
+    <div class="clear"></div>
 </div>
 {% endblock %}

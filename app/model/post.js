@@ -13,13 +13,7 @@ module.exports = app => {
       content:TEXT,
       province:STRING,
       city:STRING, 
-      author:{
-        type:BIGINT(11),
-        references:{
-          model:User,
-          key:'id'
-        }
-      },
+      author:BIGINT(11),
       participant_id: TEXT,                
       meeting_time:DATE,
       publish_at: DATE,

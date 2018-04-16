@@ -7,13 +7,7 @@ module.exports = app => {
         primaryKey : true,
         unique : true
       },
-      userid:{
-        type:BIGINT(11),
-        references:{
-          model:User,
-          key:'id'
-        }
-      },
+      userid:BIGINT(11),
       author:STRING,
       title:STRING,
       department:STRING,
