@@ -7,13 +7,20 @@ module.exports = app => {
         primaryKey : true,
         unique : true
       },
-      userid:BIGINT(11),
       title:STRING,
       department:STRING,
       intro:TEXT,
       content:TEXT,
       province:STRING,
-      city:STRING,                      
+      city:STRING, 
+      author:{
+        type:BIGINT(11),
+        references:{
+          model:User,
+          key:'id'
+        }
+      },
+      participant_id: TEXT,                
       meeting_time:DATE,
       publish_at: DATE,
       created_at: DATE,

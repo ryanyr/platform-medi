@@ -1,5 +1,5 @@
 module.exports = app => {
-    const { STRING, INTEGER, DATE, BIGINT } = app.Sequelize;
+    const { STRING, INTEGER, DATE, BIGINT , TEXT } = app.Sequelize;
     const User = app.model.define("user", {
       login: STRING,
       id: {
@@ -15,6 +15,13 @@ module.exports = app => {
       name: STRING(30),
       passwd: STRING(32),
       age: INTEGER,
+      telephone: BIGINT(11),
+      avatar: STRING,
+      company: STRING,
+      department: STRING,
+      intro: TEXT,
+      posts: STRING,
+      media: TEXT,
       last_sign_in_at: DATE,
       created_at: DATE,
       updated_at: DATE
