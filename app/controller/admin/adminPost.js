@@ -30,6 +30,60 @@ class adminController extends Controller {
         });
     
       }
+
+      async userlist() {
+        // var posts = await this.ctx.service.postsList.getAllPost();
+        await this.ctx.render('admin/userlist.html', {
+        //   posts:posts,
+          title: '用户列表',
+        });
+    
+      }
+
+      async postlist() {
+        // var posts = await this.ctx.service.postsList.getAllPost();
+        await this.ctx.render('admin/postlist.html', {
+        //   posts:posts,
+          title: '会议管理',
+        });
+    
+      }
+
+      async medialist() {
+        // var posts = await this.ctx.service.postsList.getAllPost();
+        await this.ctx.render('admin/medialist.html', {
+        //   posts:posts,
+          title: '视频管理',
+        });
+    
+      }
+
+      async doctorlist() {
+        // var posts = await this.ctx.service.postsList.getAllPost();
+        await this.ctx.render('admin/doctorlist.html', {
+        //   posts:posts,
+          title: '专家学者列表',
+        });
+    
+      }
+
+      async modifycode() {
+        // var posts = await this.ctx.service.postsList.getAllPost();
+        await this.ctx.render('admin/system.html', {
+        //   posts:posts,
+          title: '修改密码',
+        });
+    
+      }
+
+      async system() {
+        // var posts = await this.ctx.service.postsList.getAllPost();
+        await this.ctx.render('admin/system.html', {
+        //   posts:posts,
+          title: '修改密码',
+        });
+    
+      }
 }
 
 module.exports = adminController;
