@@ -203,6 +203,7 @@ body{
     height: 100%;
     right: 0;
     position: absolute;
+    background: #eee;
 }
 .admin-container .menubox .sidebar .menu{
     padding: 0.7rem;
@@ -216,5 +217,51 @@ body{
 }
 .admin-container .menubox .main .menutitle{
     text-align: left;
-    
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-left: 10px solid #007bff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 2px 2px 2px #ddd;
+    -webkit-box-shadow: 2px 2px 2px #ddd;
+    -moz-box-shadow: 2px 2px 2px #ddd;
+    margin-bottom: 0;
+    background: #fff;
+}
+.admin-container .searchbox{
+    box-shadow: 2px 2px 2px #ddd;
+    -webkit-box-shadow: 2px 2px 2px #ddd;
+    -moz-box-shadow: 2px 2px 2px #ddd;
+    background: #fff;
+    padding: 0.5rem;
+    text-align: left;
+}
+.admin-container .formbox{
+    padding: 0.5rem;
+}
+.admin-container .searchbox .col-xs-4{
+    margin-bottom:0.5rem; 
+}
+.admin-container .searchbox input{
+    margin-right: 2rem;
+}
+.admin-container .searchbox .btn{
+    background:  #007bff;
+    width: 6rem;
+    border-radius:2px;
+    padding: 0.2rem 0.5rem; 
+    margin-top:0.5rem; 
+    font-size: 0.7rem;
+    color: #fff;
+}
+.admin-container .formbody{
+    margin: 0.5rem;
+    background: #fff;
+    box-shadow: 2px 2px 2px #ddd;
+    -webkit-box-shadow: 2px 2px 2px #ddd;
+    -moz-box-shadow: 2px 2px 2px #ddd;
+}
+.admin-container .formbody .edit,.admin-container .formbody .delete{
+    cursor: pointer;
+    padding: 0 0.5rem;
+    color: #007bff;
 }
