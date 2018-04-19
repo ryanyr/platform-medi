@@ -2,8 +2,7 @@ module.exports = app => {
     const { STRING, INTEGER, DATE, BIGINT, TEXT} = app.Sequelize;
     const Post = app.model.define("post", {
       id: {
-        type: BIGINT(11),
-        autoIncrement:true,
+        type: STRING,
         primaryKey : true,
         unique : true
       },
@@ -13,7 +12,7 @@ module.exports = app => {
       content:TEXT,
       province:STRING,
       city:STRING, 
-      author:BIGINT(11),
+      author:STRING,
       participant_id: TEXT,                
       meeting_time:DATE,
       publish_at: DATE,

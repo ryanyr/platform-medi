@@ -1,4 +1,5 @@
 const moment = require('moment');
+const uuidV1 = require('uuid/v1');
 moment.locale('cn');
 
 module.exports = {
@@ -15,5 +16,9 @@ module.exports = {
         var minute = moment(localeTime).minute();
         var str = year.toString() +'年'+ month.toString() +'月'+ date.toString() +'日' + ' '+ hour.toString() + ':' + minute.toString();
         return str;
+    },
+
+    generateUUID:function(){
+        return uuidV1();
     }
 }

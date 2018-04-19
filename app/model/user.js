@@ -3,8 +3,7 @@ module.exports = app => {
     const User = app.model.define("user", {
       login: STRING,
       id: {
-        type: BIGINT(11),
-        autoIncrement:true,
+        type: STRING,
         primaryKey : true,
         unique : true
       },

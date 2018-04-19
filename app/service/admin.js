@@ -4,9 +4,10 @@ const format = require('./format');
 
 class PostsListService extends Service{
 
-    async getAllPost(){
-        const posts = await this.app.model.Post.findAll();
-        
+    async getFPPost(){
+        const posts = await this.app.model.Post.findAll({
+            limit:10
+        });        
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
             posts[i].meetingTime = formatTime;

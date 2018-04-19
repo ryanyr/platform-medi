@@ -2,8 +2,7 @@ module.exports = app => {
     const { STRING, INTEGER, DATE, BIGINT, TEXT} = app.Sequelize;
     const Media = app.model.define("media", {
       id: {
-        type: BIGINT(11),
-        autoIncrement:true,
+        type: STRING,
         primaryKey : true,
         unique : true
       },

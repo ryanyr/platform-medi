@@ -54,17 +54,19 @@
                 </tr>
             </thead>
             <tbody>
+                {% for post in posts %}
                 <tr class="datarow">
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><span class="edit" dataid=''>编辑</span><span class="delete" dataid=''>删除</span></td>
+                    <td>{{post.title}}</td>
+                    <td>{{post.department}}</td>
+                    <td>{{post.intro}}</td>
+                    <td>{{post.participant_id}}</td>
+                    <td>{{post.province}}</td>
+                    <td>{{post.city}}</td>
+                    <td>{{post.author}}</td>
+                    <td>{{post.meetingTime}}</td>
+                    <td><span class="edit" dataid={{post.id}}>编辑</span><span class="delete" dataid={{post.id}}>删除</span></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>  
