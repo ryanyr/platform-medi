@@ -50,6 +50,67 @@ class adminController extends Controller {
     
       }
 
+      async postdetail() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getPostDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/post.html', {
+          post:posts,
+          title: '会议详情',
+        });
+    
+      }
+
+      async postEdit() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getPostDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/post.html', {
+          post:posts,
+          title: '会议详情',
+        });
+    
+      }
+
+      async postSave() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getPostDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/post.html', {
+          post:posts,
+          title: '会议详情',
+        });
+    
+      }
+
+      async postDelete() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getPostDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/post.html', {
+          post:posts,
+          title: '会议详情',
+        });
+    
+      }
+
+      async postAdd() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getPostDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/post.html', {
+          post:posts,
+          title: '会议详情',
+        });
+    
+      }
+
+
       async medialist() {
         // var posts = await this.ctx.service.postsList.getAllPost();
         await this.ctx.render('admin/medialist.html', {

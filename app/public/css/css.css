@@ -260,8 +260,34 @@ body{
     -webkit-box-shadow: 2px 2px 2px #ddd;
     -moz-box-shadow: 2px 2px 2px #ddd;
 }
-.admin-container .formbody .edit,.admin-container .formbody .delete{
+.admin-container .formbody .detail,.admin-container .formbody .edit,.admin-container .formbody .delete{
     cursor: pointer;
     padding: 0 0.5rem;
     color: #007bff;
+}
+.admin-container .postContent{
+    background: #fff;
+    box-shadow: 2px 2px 2px #ddd;
+    -webkit-box-shadow: 2px 2px 2px #ddd;
+    -moz-box-shadow: 2px 2px 2px #ddd;
+    text-align: left;
+    padding: 2rem;
+}
+.admin-container .postContent h5{
+    margin-bottom: 2rem;
+}
+.fc-blue{
+    color: #007bff !important;
+    font-weight: bold;
+}
+.admin-container .editbtn{
+    background: #007bff;
+    width: 6rem;
+    border-radius: 2px;
+    padding: 0.3rem 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
 }

@@ -34,6 +34,11 @@ module.exports = app => {
   router.get('/admin/index', controller.admin.adminPost.home);
   router.get('/admin/userlist', controller.admin.adminPost.userlist);
   router.get('/admin/postlist', controller.admin.adminPost.postlist);
+  router.get('/admin/post', controller.admin.adminPost.postdetail);
+  router.get('/admin/editpost', controller.admin.adminPost.postEdit);
+  router.get('/admin/addpost', controller.admin.adminPost.postAdd);
+  router.post('/admin/savepost', controller.admin.adminPost.postSave);
+  router.post('/admin/deletepost', controller.admin.adminPost.postDelete);
   router.get('/admin/medialist', controller.admin.adminPost.medialist);
   router.get('/admin/doctorlist', controller.admin.adminPost.doctorlist);
   router.get('/admin/modifycode', controller.admin.adminPost.modifycode);

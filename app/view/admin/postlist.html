@@ -64,7 +64,11 @@
                     <td>{{post.city}}</td>
                     <td>{{post.author}}</td>
                     <td>{{post.meetingTime}}</td>
-                    <td><span class="edit" dataid={{post.id}}>编辑</span><span class="delete" dataid={{post.id}}>删除</span></td>
+                    <td>
+                        <a href="/admin/post?id={{post.id}}"><span class="detail" dataid={{post.id}}>查看</span></a>
+                        <a href="/admin/post?id={{post.id}}"><span class="edit" dataid={{post.id}}>编辑</span></a>
+                        <a href="/admin/post?id={{post.id}}"><span class="delete" dataid={{post.id}}>删除</span></a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
