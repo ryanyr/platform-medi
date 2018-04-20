@@ -67,9 +67,9 @@ class adminController extends Controller {
         console.log(id);
         var posts = await this.ctx.service.admin.getPostDetail(id);
         console.log(posts);
-        await this.ctx.render('admin/post.html', {
+        await this.ctx.render('admin/postedit.html', {
           post:posts,
-          title: '会议详情',
+          title: '会议编辑',
         });
     
       }
