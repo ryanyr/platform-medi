@@ -182,9 +182,36 @@ class PostsListService extends Service{
     }
 
     async getDoctors(){
-        const doctors = await this.app.model.User.findAll();
-        
+        const doctors = await this.app.model.User.findAll();        
         return doctors;
+    }
+
+    async postSave(data){
+        var data = data;
+        var dateD = data.date.toString();        
+        var year = dateD.substring(0,4);
+        var month = dateD.substring(5,7)-1;
+        var day = dateD.substring(8);
+        /* console.log(year);
+        console.log(month);
+        console.log(day); */
+        var date = new Date(year,month,day,data.hour,data.minute,0);
+        // console.log(date);
+        var id = format.generateUUID();
+        var savedate = {
+            id:id,
+            title:data.title,
+            department:data.department,
+            intro:data.intro,
+            content:data.content,
+            province:data.province,
+            city:data.city, 
+            author:data.title,//取session中user信息 todo
+            participant_id: data.participant_id,                
+            meeting_time:date
+        }
+        const posts = await this.app.model.Post.create(savedate);
+        return posts;
     }
 
 }

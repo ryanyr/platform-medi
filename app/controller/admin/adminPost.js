@@ -74,7 +74,7 @@ class adminController extends Controller {
     
       }
 
-      async postSave() {
+      async postUpdate() {
         var id = this.ctx.request.query;
         console.log(id);
         var posts = await this.ctx.service.admin.getPostDetail(id);
@@ -99,17 +99,19 @@ class adminController extends Controller {
       }
 
       async postAdd() {
-        var id = this.ctx.request.query;
-        console.log(id);
-        var posts = await this.ctx.service.admin.getPostDetail(id);
-        console.log(posts);
-        await this.ctx.render('admin/post.html', {
-          post:posts,
-          title: '会议详情',
+
+        await this.ctx.render('admin/postadd.html', {
+          title: '添加会议',
         });
     
       }
 
+      async postSave() {
+        var data = this.ctx.request.body;
+        // console.log(data);
+        var result = await this.ctx.service.admin.postSave(data);
+        console.log(result);
+      }
 
       async medialist() {
         // var posts = await this.ctx.service.postsList.getAllPost();
