@@ -111,6 +111,11 @@ class adminController extends Controller {
         // console.log(data);
         var result = await this.ctx.service.admin.postSave(data);
         console.log(result);
+        if(result){
+          this.ctx.status=200;
+        }else{
+          this.ctx.status=403;
+        }
       }
 
       async medialist() {

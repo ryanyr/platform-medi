@@ -211,7 +211,7 @@ class PostsListService extends Service{
             meeting_time:date
         }
         const posts = await this.app.model.Post.create(savedate);
-        return posts;
+        return true;
     }
 
 }
