@@ -238,6 +238,16 @@ class PostsListService extends Service{
         return true;
     }
 
+    async postDelete(id){
+        var id = id;
+        const posts = await this.app.model.Post.destroy({
+            where:{
+                id:id
+            }
+        });
+        return true;
+    }
+
 }
 
 module.exports = PostsListService;

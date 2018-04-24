@@ -1,6 +1,26 @@
 {% extends "adtemplate.html" %} 
 {% block content %}
 <p class='menutitle'>{{title}}</p>
+<!-- Modal -->
+<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          确认删除此条数据？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" id="deleteComfirm" class="btn btn-primary">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="formbox">
     <div class='searchbox'>
         <div class="row">
@@ -67,7 +87,7 @@
                     <td>
                         <a href="/admin/post?id={{post.id}}"><span class="detail" dataid={{post.id}}>查看</span></a>
                         <a href="/admin/editpost?id={{post.id}}"><span class="edit" dataid={{post.id}}>编辑</span></a>
-                        <a href="/admin/post?id={{post.id}}"><span class="delete" dataid={{post.id}}>删除</span></a>
+                        <a><span class="delete" id='deleteBtn' onclick="getid(this)" data-toggle="modal" data-target="#dialog" dataid={{post.id}}>删除</span></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -75,4 +95,41 @@
         </table>
     </div>  
 </div>
+<script>
+    var deleteId = '';
+    function getid(obj){
+        deleteId = $(obj).attr('dataid');
+    }
+    $('#deleteComfirm').click(function(){
+        $('#dialog').modal('hide');
+        var id = deleteId;
+        var data = {
+            id:id
+        }
+        $.ajax({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader('x-csrf-token', csrftoken);
+                }
+            },
+            url:'deletepost',
+            method:'post',
+            datatype: 'json',
+            // contentType:'application/x-www-form-urlencoded',
+            data : JSON.stringify(data),
+            contentType: 'application/json',
+            processData: false,
+        }).done(function(res){
+            var data = res.message;
+            // if(data.length>0){
+                alert(data);
+                window.location.reload(true);
+                // window.location.pathname ='admin/index';
+                // displayPost(data);
+            // }        
+        }).fail(function(err){
+            alert('发生错误');
+        }) 
+    });
+ </script>
 {% endblock %}

@@ -89,14 +89,17 @@ class adminController extends Controller {
       }
 
       async postDelete() {
-        var id = this.ctx.request.query;
+        var id = this.ctx.request.body.id;
         console.log(id);
-        var posts = await this.ctx.service.admin.getPostDetail(id);
-        console.log(posts);
-        await this.ctx.render('admin/post.html', {
-          post:posts,
-          title: '会议详情',
-        });
+        var result = await this.ctx.service.admin.postDelete(id);
+        console.log(result);
+        if(result){
+          this.ctx.status=200;
+          this.ctx.body={message:'删除成功'};
+        }else{
+          this.ctx.status=403;
+          this.ctx.body={message:'删除失败，请稍后再试'};
+        }
     
       }
 
