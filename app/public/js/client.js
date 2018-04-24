@@ -20,6 +20,9 @@ function chooseDistrictItem(obj){
     var department = $('#selectDepartment').text();
     var year = $('#selectYear').text();
     var month = $('#selectMonth').text();
+    if(district=='选择省份'||district=='不限省份'){
+        district = '';
+    }
     if(department=='选择学科'||department=='不限学科'){
         department = '';
     }
@@ -30,7 +33,7 @@ function chooseDistrictItem(obj){
         month = '';
     }
     var req = {
-        district:item,
+        district:district,
         department:department,
         year:year,
         month:month
@@ -52,6 +55,9 @@ function chooseDepartmentItem(obj){
     var month = $('#selectMonth').text();
     if(district=='选择省份'||district=='不限省份'){
         district = '';
+    }
+    if(department=='选择学科'||department=='不限学科'){
+        department = '';
     }
     if(year=='选择年份'||year=='不限年份'){
         year = '';
@@ -84,6 +90,9 @@ function chooseYearItem(obj){
     }
     if(department=='选择学科'||department=='不限学科'){
         department = '';
+    }
+    if(year=='选择年份'||year=='不限年份'){
+        year = '';
     }
     if(month=='选择月份'||month=='不限月份'){
         month = '';
