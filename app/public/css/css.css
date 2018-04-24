@@ -292,6 +292,7 @@ body{
     color: #fff;
     display: inline-block;
     text-align: center;
+    cursor: pointer;
 }
 .admin-container .postContent label{
     width: 5rem;

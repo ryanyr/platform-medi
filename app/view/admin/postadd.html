@@ -84,16 +84,14 @@
                 contentType: 'application/json',
                 processData: false,
             }).done(function(res){
-                var data = res.posts;
+                var data = res.message;
                 // if(data.length>0){
-                    console.log(1);
-                    console.log(data);
+                    alert(data);
                     // window.location.pathname ='admin/index';
                     // displayPost(data);
                 // }        
             }).fail(function(err){
-                console.log(err);
-                alert('error');
+                alert('发生错误');
             }) 
         });
      </script>

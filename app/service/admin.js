@@ -192,9 +192,6 @@ class PostsListService extends Service{
         var year = dateD.substring(0,4);
         var month = dateD.substring(5,7)-1;
         var day = dateD.substring(8);
-        /* console.log(year);
-        console.log(month);
-        console.log(day); */
         var date = new Date(year,month,day,data.hour,data.minute,0);
         // console.log(date);
         var id = format.generateUUID();
@@ -211,6 +208,33 @@ class PostsListService extends Service{
             meeting_time:date
         }
         const posts = await this.app.model.Post.create(savedate);
+        return true;
+    }
+
+    async postUpdate(data){
+        var data = data;
+        var dateD = data.date.toString();        
+        var year = dateD.substring(0,4);
+        var month = dateD.substring(5,7)-1;
+        var day = dateD.substring(8);
+        var date = new Date(year,month,day,data.hour,data.minute,0);       
+        var id = data.id;
+        var savedate = {
+            title:data.title,
+            department:data.department,
+            intro:data.intro,
+            content:data.content,
+            province:data.province,
+            city:data.city, 
+            author:data.title,//取session中user信息 todo
+            participant_id: data.participant_id,                
+            meeting_time:date
+        }
+        const posts = await this.app.model.Post.update(savedate,{
+            where:{
+                id:id
+            }
+        });
         return true;
     }
 

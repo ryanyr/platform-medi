@@ -18,8 +18,8 @@
         </p>
         <p>
             <label for="province">会议地点:</label>
-            <input type="text" name="province" id="province" placeholder="{{post.province}}"/>
-            <input type="text" name="city" id="city" placeholder="{{post.city}}"/>
+            <input type="text" name="province" id="province" placeholder="{{post.province}}"/>省
+            <input type="text" name="city" id="city" placeholder="{{post.city}}"/>市
         </p>
         <p>
             <label for="department">科室:</label>
@@ -38,13 +38,62 @@
             <textarea type="text" name="content" id="content">{{post.content}}</textarea>
         </p>
         <br/>
-        <p><span class="editbtn" postid='{{post.id}}'>保存</span></p>
+        <p><span class="editbtn" id='saveBtn' postid='{{post.id}}'>保存</span></p>
     </div>
     <script>
         $('#datetimepicker').datepicker({
             "autoclose":true,
             "format":"yyyy-mm-dd",
             "language":"zh-CN"            
+        });
+        $('#saveBtn').click(function(){
+            var id = $('#saveBtn').attr('postid');
+            var title = $('#title').val();
+            var date = $('#datetimepicker').val();
+            var hour = $('#hours').val();
+            var minute = $('#minutes').val();
+            var province = $('#province').val();
+            var city = $('#city').val();
+            var department = $('#department').val();
+            var participant_id = $('#participant_id').val();
+            var intro = $('#intro').val();
+            var content = $('#content').val();
+            var data = {
+                id:id,
+                title:title,
+                date:date,
+                hour:hour,
+                minute:minute,
+                province:province,
+                city:city,
+                department:department,
+                participant_id:participant_id,
+                intro:intro,
+                content:content
+            }
+            $.ajax({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader('x-csrf-token', csrftoken);
+                    }
+                },
+                url:'updatepost',
+                method:'post',
+                datatype: 'json',
+                // contentType:'application/x-www-form-urlencoded',
+                data : JSON.stringify(data),
+                contentType: 'application/json',
+                processData: false,
+            }).done(function(res){
+                var data = res.message;
+                // if(data.length>0){
+                    alert(data);
+                    // window.location.pathname ='admin/index';
+                    // displayPost(data);
+                // }        
+            }).fail(function(err){
+                alert('发生错误');
+            }) 
         });
      </script>
 </div>

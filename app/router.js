@@ -37,6 +37,7 @@ module.exports = app => {
   router.get('/admin/post', controller.admin.adminPost.postdetail);
   router.get('/admin/editpost', controller.admin.adminPost.postEdit);
   router.get('/admin/addpost', controller.admin.adminPost.postAdd);
+  router.post('/admin/updatepost', controller.admin.adminPost.postUpdate);
   router.post('/admin/savepost', controller.admin.adminPost.postSave);
   router.post('/admin/deletepost', controller.admin.adminPost.postDelete);
   router.get('/admin/medialist', controller.admin.adminPost.medialist);

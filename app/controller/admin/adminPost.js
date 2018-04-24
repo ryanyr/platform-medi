@@ -75,14 +75,16 @@ class adminController extends Controller {
       }
 
       async postUpdate() {
-        var id = this.ctx.request.query;
-        console.log(id);
-        var posts = await this.ctx.service.admin.getPostDetail(id);
-        console.log(posts);
-        await this.ctx.render('admin/post.html', {
-          post:posts,
-          title: '会议详情',
-        });
+        var data = this.ctx.request.body;
+        var result = await this.ctx.service.admin.postUpdate(data);
+        // console.log(result);
+        if(result){
+          this.ctx.status=200;
+          this.ctx.body={message:'保存成功'};
+        }else{
+          this.ctx.status=403;
+          this.ctx.body={message:'保存失败，请稍后再试'};
+        }
     
       }
 
@@ -113,8 +115,10 @@ class adminController extends Controller {
         console.log(result);
         if(result){
           this.ctx.status=200;
+          this.ctx.body={message:'保存成功'};
         }else{
           this.ctx.status=403;
+          this.ctx.body={message:'保存失败，请稍后再试'};
         }
       }
 
