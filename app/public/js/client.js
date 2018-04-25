@@ -168,6 +168,33 @@ function getAllPosts(obj){
     })    
 }
 
+function searchByKeywords(){
+    var keyword = $('#searchKeywords').val();
+    $.ajax({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader('x-csrf-token', csrftoken);
+            }
+          },
+        url:'/getPostsByKeywords',
+        method:'get',
+        // datatype: 'json',
+        data : 'keyword=' + keyword,
+        contentType: false,
+        processData: false,
+    }).done(function(data){
+        var data = data.posts;
+        // if(data.length>0){
+            console.log(1);
+            console.log(data);
+            displayPost(data);
+        // }        
+    }).fail(function(data){
+        console.log(err);
+        alert('error');
+    }) 
+}
+
 function displayPost(data){
     $('.list-group').empty();
     var post = '';

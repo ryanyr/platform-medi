@@ -148,6 +148,22 @@ class PostsListService extends Service{
         return post;
     }
 
+    async getPostsByKeywords(data){
+        var keyword = data.keyword;
+        keyword = '%'+keyword+'%';
+        console.log(keyword);
+        const posts = await this.app.model.Post.findAll({
+            where: { title: {
+                $like:keyword
+            } } 
+        });
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
     async getMonthyPosts(){        
         var date = new Date();
         var year = date.getFullYear();
