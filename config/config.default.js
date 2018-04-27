@@ -58,7 +58,7 @@ module.exports = appInfo => {
     password: 'root'
 
   };
- 
+
   return config;
 };
 

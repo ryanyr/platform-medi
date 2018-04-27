@@ -29,10 +29,14 @@ module.exports = app => {
 
 
   //admin
-  // router.get('/admin/', controller.admin.adminPost.login);
-  router.get('/admin/login', controller.admin.adminPost.login);
-  router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
+  router.get('/admin/', controller.admin.adminPost.home);
+  router.get('/admin/login', controller.admin.adminPost.login);  
   router.get('/admin/index', controller.admin.adminPost.home);
+
+  // 鉴权成功后的回调页面
+  router.get('/authCallback', controller.admin.adminPost.home);
+  router.post('/login', app.passport.authenticate('local', { successRedirect: '/authCallback' }));
+  // router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
   router.get('/admin/userlist', controller.admin.adminPost.userlist);
   router.get('/admin/postlist', controller.admin.adminPost.postlist);
   router.get('/admin/post', controller.admin.adminPost.postdetail);

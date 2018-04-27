@@ -15,7 +15,7 @@ class postController extends Controller {
   }
 
   async getMonthyPosts() {
-
+    
     var posts = await this.ctx.service.postsList.getMonthyPosts();
     await this.ctx.render('client/monthList.html', {
       posts:posts,
