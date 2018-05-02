@@ -6,7 +6,7 @@ module.exports = app => {
         primaryKey : true,
         unique : true
       },
-      userid:BIGINT(11),
+      userid:STRING,
       author:STRING,
       title:STRING,
       department:STRING,

@@ -38,6 +38,7 @@ module.exports = app => {
   router.post('/login', app.passport.authenticate('local', { successRedirect: '/authCallback' }));
   // router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
   router.get('/admin/userlist', controller.admin.adminPost.userlist);
+
   router.get('/admin/postlist', controller.admin.adminPost.postlist);
   router.get('/admin/post', controller.admin.adminPost.postdetail);
   router.get('/admin/editpost', controller.admin.adminPost.postEdit);
@@ -45,7 +46,14 @@ module.exports = app => {
   router.post('/admin/updatepost', controller.admin.adminPost.postUpdate);
   router.post('/admin/savepost', controller.admin.adminPost.postSave);
   router.post('/admin/deletepost', controller.admin.adminPost.postDelete);
+
   router.get('/admin/medialist', controller.admin.adminPost.medialist);
+  router.get('/admin/media', controller.admin.adminPost.mediadetail);
+  router.get('/admin/addmedia', controller.admin.adminPost.mediaAdd);
+  router.post('/admin/updatemedia', controller.admin.adminPost.mediaUpdate);
+  router.post('/admin/savemedia', controller.admin.adminPost.mediaSave);
+  router.post('/admin/deletemedia', controller.admin.adminPost.mediaDelete);
+
   router.get('/admin/doctorlist', controller.admin.adminPost.doctorlist);
   router.get('/admin/modifycode', controller.admin.adminPost.modifycode);
   router.get('/admin/system', controller.admin.adminPost.system);

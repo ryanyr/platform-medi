@@ -248,6 +248,85 @@ class PostsListService extends Service{
         return true;
     }
 
+    async getAllMedia(){
+        const media = await this.app.model.Media.findAll({
+            limit:10
+        });        
+        for(var i=0; i<media.length; i++){             
+            var formatTime = format.formatDate(media[i].post_time);
+            media[i].postTime = formatTime;
+        }
+        return media;
+    }
+
+    async getMediaDetail(data){
+        var postid = data.id;
+        // console.log(postid);
+        const post = await this.app.model.Media.find({
+            where: { id: postid } 
+        });
+        var formatTime = format.formatDate(post.post_time);
+        post.postTime = formatTime;
+        return post;
+    }
+
+
+    async mediaSave(data){
+        var data = data;
+        var date = new Date();
+        // console.log(date);
+        var id = format.generateUUID();
+        var savedate = {
+            id:id,
+            userid:id,
+            title:data.title,
+            department:data.department,
+            intro:data.intro,
+            content:data.content,
+            province:data.province,
+            mediaurl:data.mediaurl, 
+            city:data.city, 
+            author:data.author,//取session中user信息 todo           
+            post_time:date
+        }
+        const posts = await this.app.model.Media.create(savedate);
+        return true;
+    }
+
+    async mediaUpdate(data){
+        var data = data;
+        var date = new Date();       
+        var id = data.id;
+        var savedate = {
+            userid:id,
+            title:data.title,
+            department:data.department,
+            intro:data.intro,
+            content:data.content,
+            province:data.province,
+            mediaurl:data.mediaurl, 
+            city:data.city, 
+            author:data.author,//取session中user信息 todo           
+            post_time:date
+        }
+        const posts = await this.app.model.Media.update(savedate,{
+            where:{
+                id:id
+            }
+        });
+        return true;
+    }
+
+    async mediaDelete(id){
+        var id = id;
+        const posts = await this.app.model.Media.destroy({
+            where:{
+                id:id
+            }
+        });
+        return true;
+    }
+
 }
 
 module.exports = PostsListService;
