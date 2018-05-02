@@ -151,7 +151,7 @@ class adminController extends Controller {
         console.log(id);
         var posts = await this.ctx.service.admin.getMediaDetail(id);
         console.log(posts);
-        await this.ctx.render('admin/postedit.html', {
+        await this.ctx.render('admin/mediaedit.html', {
           post:posts,
           title: '会议编辑',
         });
@@ -182,7 +182,7 @@ class adminController extends Controller {
 
       async mediaUpdate() {
         var data = this.ctx.request.body;
-        var result = await this.ctx.service.admin.postUpdate(data);
+        var result = await this.ctx.service.admin.mediaUpdate(data);
         // console.log(result);
         if(result){
           this.ctx.status=200;
@@ -197,7 +197,7 @@ class adminController extends Controller {
       async mediaDelete() {
         var id = this.ctx.request.body.id;
         console.log(id);
-        var result = await this.ctx.service.admin.postDelete(id);
+        var result = await this.ctx.service.admin.mediaDelete(id);
         console.log(result);
         if(result){
           this.ctx.status=200;

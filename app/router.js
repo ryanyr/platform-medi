@@ -49,6 +49,7 @@ module.exports = app => {
 
   router.get('/admin/medialist', controller.admin.adminPost.medialist);
   router.get('/admin/media', controller.admin.adminPost.mediadetail);
+  router.get('/admin/editmedia', controller.admin.adminPost.mediaEdit);
   router.get('/admin/addmedia', controller.admin.adminPost.mediaAdd);
   router.post('/admin/updatemedia', controller.admin.adminPost.mediaUpdate);
   router.post('/admin/savemedia', controller.admin.adminPost.mediaSave);

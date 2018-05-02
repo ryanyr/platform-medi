@@ -11,6 +11,7 @@
         <p><span class="fc-blue">会议简介</span>：{{post.intro}}</p>
         <p><span class="fc-blue">会议详情</span>：{{post.content}}</p>
         <p><span class="fc-blue">会议链接</span>：{{post.mediaurl}}</p>
+        <p>{{post.mediaurl | safe}}</p>
         <br/>
         <p><a href="/admin/editmedia?id={{post.id}}"><span class="editbtn">编辑</span></a></p>
     </div>
