@@ -348,6 +348,88 @@ class PostsListService extends Service{
         
     }
 
+    async getAllDoctor(){
+        const doctors = await this.app.model.User.findAll({
+            where:{
+                role:2
+            },
+            // limit:10
+        });        
+        for(var i=0; i<doctors.length; i++){             
+            var formatTime = format.formatDate(doctors[i].last_sign_in_at);
+            doctors[i].last_sign_in = formatTime;
+        }
+        return doctors;
+    }
+
+    async getDoctorDetail(data){
+        var postid = data.id;
+        // console.log(postid);
+        const post = await this.app.model.Media.find({
+            where: { id: postid } 
+        });
+        var formatTime = format.formatDate(post.post_time);
+        post.postTime = formatTime;
+        return post;
+    }
+
+
+    async doctorSave(data){
+        var data = data;
+        var date = new Date();
+        // console.log(date);
+        var id = format.generateUUID();
+        var savedate = {
+            id:id,
+            userid:id,
+            title:data.title,
+            department:data.department,
+            intro:data.intro,
+            content:data.content,
+            province:data.province,
+            mediaurl:data.mediaurl, 
+            city:data.city, 
+            author:data.author,//取session中user信息 todo           
+            post_time:date
+        }
+        const posts = await this.app.model.Media.create(savedate);
+        return true;
+    }
+
+    async doctorUpdate(data){
+        var data = data;
+        var date = new Date();       
+        var id = data.id;
+        var savedate = {
+            userid:id,
+            title:data.title,
+            department:data.department,
+            intro:data.intro,
+            content:data.content,
+            province:data.province,
+            mediaurl:data.mediaurl, 
+            city:data.city, 
+            author:data.author,//取session中user信息 todo           
+            post_time:date
+        }
+        const posts = await this.app.model.Media.update(savedate,{
+            where:{
+                id:id
+            }
+        });
+        return true;
+    }
+
+    async doctorDelete(id){
+        var id = id;
+        const posts = await this.app.model.Media.destroy({
+            where:{
+                id:id
+            }
+        });
+        return true;
+    }
+
 }
 
 module.exports = PostsListService;

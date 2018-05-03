@@ -215,11 +215,86 @@ class adminController extends Controller {
 
 
       async doctorlist() {
-        // var posts = await this.ctx.service.postsList.getAllPost();
+        var doctors = await this.ctx.service.admin.getAllDoctor();
         await this.ctx.render('admin/doctorlist.html', {
-        //   posts:posts,
+          doctors:doctors,
           title: '专家学者列表',
         });
+    
+      }
+
+      async doctordetail() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getMediaDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/media.html', {
+          post:posts,
+          title: '会议详情',
+        });
+    
+      }
+
+      async doctorEdit() {
+        var id = this.ctx.request.query;
+        console.log(id);
+        var posts = await this.ctx.service.admin.getMediaDetail(id);
+        console.log(posts);
+        await this.ctx.render('admin/mediaedit.html', {
+          post:posts,
+          title: '会议编辑',
+        });
+    
+      }
+
+      async doctorAdd() {
+
+        await this.ctx.render('admin/mediaadd.html', {
+          title: '添加视频',
+        });
+    
+      }
+
+      async doctorSave() {
+        var data = this.ctx.request.body;
+        // console.log(data);
+        var result = await this.ctx.service.admin.mediaSave(data);
+        console.log(result);
+        if(result){
+          this.ctx.status=200;
+          this.ctx.body={message:'保存成功'};
+        }else{
+          this.ctx.status=403;
+          this.ctx.body={message:'保存失败，请稍后再试'};
+        }
+      }
+
+      async doctorUpdate() {
+        var data = this.ctx.request.body;
+        var result = await this.ctx.service.admin.mediaUpdate(data);
+        // console.log(result);
+        if(result){
+          this.ctx.status=200;
+          this.ctx.body={message:'保存成功'};
+        }else{
+          this.ctx.status=403;
+          this.ctx.body={message:'保存失败，请稍后再试'};
+        }
+    
+      }
+
+      async doctorDelete() {
+        var id = this.ctx.request.body.id;
+        console.log(id);
+        var result = await this.ctx.service.admin.mediaDelete(id);
+        console.log(result);
+        if(result){
+          this.ctx.status=200;
+          this.ctx.body={message:'删除成功'};
+        }else{
+          this.ctx.status=403;
+          this.ctx.body={message:'删除失败，请稍后再试'};
+        }
     
       }
 
