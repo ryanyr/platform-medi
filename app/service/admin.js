@@ -327,6 +327,27 @@ class PostsListService extends Service{
         return true;
     }
 
+    async bannerSave(data){
+        var postkey = data.postkey;
+        const existed = await this.app.model.Banner.findOne({
+            where:{
+                postkey:postkey
+            }
+        });
+        if(existed){
+            const posts = await this.app.model.Banner.update(data,{
+                where:{
+                    postkey:postkey
+                }
+            });
+            return true;
+        }else{
+            const posts = await this.app.model.Banner.create(data);
+            return true;
+        }
+        
+    }
+
 }
 
 module.exports = PostsListService;

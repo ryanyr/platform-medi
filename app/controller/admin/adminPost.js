@@ -1,5 +1,9 @@
 'use strict';
-
+const fs = require('fs');
+const path = require('path');
+const uuidV1 = require('uuid/v1');
+const awaitWriteStream = require('await-stream-ready').write;
+const sendToWormhole = require('stream-wormhole');
 const Controller = require('egg').Controller;
 
 class adminController extends Controller {
@@ -232,9 +236,47 @@ class adminController extends Controller {
         // var posts = await this.ctx.service.postsList.getAllPost();
         await this.ctx.render('admin/system.html', {
         //   posts:posts,
-          title: '修改密码',
+          title: '广告位图片管理',
         });
     
+      }
+
+      async uploadBanner() {
+        var data = this.ctx.request.body;
+        // console.log(data);
+        // var result = await this.ctx.service.admin.mediaSave(data);
+        console.log(result);
+        if(result){
+          this.ctx.status=200;
+          this.ctx.body={message:'保存成功'};
+        }else{
+          this.ctx.status=403;
+          this.ctx.body={message:'保存失败，请稍后再试'};
+        }
+      }
+
+      async upload() {
+        const stream = await this.ctx.getFileStream();
+        console.log(stream);
+        // const filename = encodeURIComponent(stream.filename) + path.extname(stream.filename).toLowerCase();
+        const filename = uuidV1() + path.extname(stream.filename).toLowerCase();
+        const target = path.join(this.config.baseDir, 'app/public/uploadimg/', filename);
+        const writeStream = fs.createWriteStream(target);
+        const url = '../public/uploadimg/' + filename;
+        try {
+          await awaitWriteStream(stream.pipe(writeStream));
+          var data = {
+            id: uuidV1(),
+            postkey : stream.fields.postkey,
+            url:url
+          }
+          var result = await this.ctx.service.admin.bannerSave(data);
+        } catch (err) {
+          await sendToWormhole(stream);
+          throw err;
+        }
+    
+        this.ctx.body = { url: url };
       }
 }
 

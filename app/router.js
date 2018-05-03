@@ -56,7 +56,9 @@ module.exports = app => {
   router.post('/admin/deletemedia', controller.admin.adminPost.mediaDelete);
 
   router.get('/admin/doctorlist', controller.admin.adminPost.doctorlist);
+
   router.get('/admin/modifycode', controller.admin.adminPost.modifycode);
   router.get('/admin/system', controller.admin.adminPost.system);
+  router.post('/admin/uploadBanner', controller.admin.adminPost.upload);
 
 };
