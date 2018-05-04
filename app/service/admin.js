@@ -363,14 +363,17 @@ class PostsListService extends Service{
     }
 
     async getDoctorDetail(data){
-        var postid = data.id;
+        var id = data.id;
         // console.log(postid);
-        const post = await this.app.model.Media.find({
-            where: { id: postid } 
+        const doctor = await this.app.model.User.find({
+            where: { 
+                id: id,
+                role:2
+            } 
         });
-        var formatTime = format.formatDate(post.post_time);
-        post.postTime = formatTime;
-        return post;
+        var formatTime = format.formatDate(doctor.last_sign_in_at);
+        doctor.last_sign_in = formatTime;
+        return doctor;
     }
 
 
@@ -398,23 +401,20 @@ class PostsListService extends Service{
 
     async doctorUpdate(data){
         var data = data;
-        var date = new Date();       
-        var id = data.id;
+        // console.log(date);
         var savedate = {
-            userid:id,
-            title:data.title,
-            department:data.department,
-            intro:data.intro,
-            content:data.content,
-            province:data.province,
-            mediaurl:data.mediaurl, 
-            city:data.city, 
-            author:data.author,//取session中user信息 todo           
-            post_time:date
+            role:2,
+            name: data.name,
+            passwd:'123456',
+            department: data.department,
+            company: data.company,
+            telephone: data.telephone,
+            age: data.age,
+            intro: data.intro,
+            avatar: data.avatar,      
         }
-        const posts = await this.app.model.User.update(savedate,{
-            where:{
-                id:id
+        const posts = await this.app.model.User.update(savedate, {where:{
+                id:data.id
             }
         });
         return true;

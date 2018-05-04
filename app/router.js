@@ -60,6 +60,7 @@ module.exports = app => {
   router.get('/admin/editdoctor', controller.admin.adminPost.doctorEdit);
   router.get('/admin/adddoctor', controller.admin.adminPost.doctorAdd);
   router.post('/admin/updatedoctor', controller.admin.adminPost.doctorUpdate);
+  router.post('/admin/updatedoctorwithout', controller.admin.adminPost.doctorNopicUpdate);
   router.post('/admin/savedoctor', controller.admin.adminPost.doctorSave);
   router.post('/admin/deletedoctor', controller.admin.adminPost.doctorDelete);
 

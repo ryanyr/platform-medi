@@ -226,11 +226,11 @@ class adminController extends Controller {
       async doctordetail() {
         var id = this.ctx.request.query;
         console.log(id);
-        var posts = await this.ctx.service.admin.getMediaDetail(id);
-        console.log(posts);
+        var doctor = await this.ctx.service.admin.getDoctorDetail(id);
+        // console.log(doctor);
         await this.ctx.render('admin/doctor.html', {
-          post:posts,
-          title: '会议详情',
+          doctor:doctor,
+          title: '医生详情',
         });
     
       }
@@ -238,11 +238,11 @@ class adminController extends Controller {
       async doctorEdit() {
         var id = this.ctx.request.query;
         console.log(id);
-        var posts = await this.ctx.service.admin.getMediaDetail(id);
-        console.log(posts);
+        var doctor = await this.ctx.service.admin.getDoctorDetail(id);
+        // console.log(posts);
         await this.ctx.render('admin/doctoredit.html', {
-          post:posts,
-          title: '会议编辑',
+          doctor:doctor,
+          title: '专家编辑',
         });
     
       }
@@ -257,7 +257,7 @@ class adminController extends Controller {
 
       async doctorSave() {
         const stream = await this.ctx.getFileStream();
-        console.log(stream);
+        // console.log(stream);
         // const filename = encodeURIComponent(stream.filename) + path.extname(stream.filename).toLowerCase();
         const filename = uuidV1() + path.extname(stream.filename).toLowerCase();
         const target = path.join(this.config.baseDir, 'app/public/uploadimg/', filename);
@@ -289,8 +289,43 @@ class adminController extends Controller {
       }
 
       async doctorUpdate() {
+        const stream = await this.ctx.getFileStream();
+        console.log(stream);
+        // const filename = encodeURIComponent(stream.filename) + path.extname(stream.filename).toLowerCase();
+        const filename = uuidV1() + path.extname(stream.filename).toLowerCase();
+        const target = path.join(this.config.baseDir, 'app/public/uploadimg/', filename);
+        const writeStream = fs.createWriteStream(target);
+        const url = '../public/uploadimg/' + filename;
+        try {
+          await awaitWriteStream(stream.pipe(writeStream));
+          var data = {
+            id: stream.fields.id,
+            name: stream.fields.name,
+            department: stream.fields.department,
+            company: stream.fields.company,
+            telephone: stream.fields.telephone,
+            age: stream.fields.age,
+            intro: stream.fields.intro,
+            avatar: url
+          }
+          var result = await this.ctx.service.admin.doctorUpdate(data);
+          if(result){
+            this.ctx.status=200;
+            this.ctx.body={message:'保存成功'};
+          }else{
+            this.ctx.status=403;
+            this.ctx.body={message:'保存失败，请稍后再试'};
+          }
+        } catch (err) {
+          await sendToWormhole(stream);
+          throw err;
+        }
+    
+      }
+
+      async doctorNopicUpdate() {
         var data = this.ctx.request.body;
-        var result = await this.ctx.service.admin.mediaUpdate(data);
+        var result = await this.ctx.service.admin.doctorUpdate(data);
         // console.log(result);
         if(result){
           this.ctx.status=200;
