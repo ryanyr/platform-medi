@@ -1,26 +1,16 @@
 {% extends "template.html"%} {% block content %} {% include "../navtop.html"%}
 
-<div class="search">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="输入关键字">
-        <div class="input-group-append">
-            <button id='searchBtn' class="btn btn-outline-secondary" type="button">搜索</button>
-        </div>
-    </div>
-</div>
 <div class="postlist">
     <div class="list-group">
-        {% for doctor in doctors %}
-        <a href="/doctorinfo?id={{doctor.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="list-group-item list-group-item-action flex-column align-items-start"></a>
             <div class="d-flex w-100 justify-content-between">
-            <p class="title">{{doctor.name}}</p>            
+                <p class="title">{{doctor.name}}</p>            
             </div>
             <p class="avatar"><img src="{{doctor.avatar}}" alt=""></p>                 
             <p class="location">所属单位：{{doctor.company}}-{{doctor.department}}</p>
             <p class="location">联系方式：{{doctor.telephone}}</p>
             <p class="content">专家介绍：{{doctor.intro}}</p>
-        </a>
-        {% endfor%}
+        </div>
     </div>
 </div>
 

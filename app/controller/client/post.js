@@ -36,9 +36,10 @@ class postController extends Controller {
 
   async getDoctors() {
 
-    var posts = await this.ctx.service.postsList.getDoctors();
+    var doctors = await this.ctx.service.postsList.getDoctors();
+    console.log(doctors);
     await this.ctx.render('client/doctors.html', {
-      posts:posts,
+      doctors:doctors,
       title: '专家学者',
     });
 
@@ -134,6 +135,17 @@ class postController extends Controller {
     await this.ctx.render('client/post.html', {
       post:post,
       title: '会议详情',
+    });
+  }
+
+  async getDoctorinfo(){
+    var id = await this.ctx.request.query;
+    // console.log(postid);
+    var doctor = await this.ctx.service.postsList.getDoctorinfo(id);
+    // console.log(post);
+    await this.ctx.render('client/doctorinfo.html', {
+      doctor:doctor,
+      title: '专家信息',
     });
   }
 

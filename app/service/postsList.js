@@ -204,9 +204,24 @@ class PostsListService extends Service{
     }
 
     async getDoctors(){
-        const doctors = await this.app.model.User.findAll();
+        const doctors = await this.app.model.User.findAll({
+            where:{
+                role:2
+            }
+        });
         
         return doctors;
+    }
+
+    async getDoctorinfo(data){
+        var id = data.id;
+        // console.log(postid);
+        const doctor = await this.app.model.User.find({
+            where: { id: id } 
+        });
+        var formatTime = format.formatDate(doctor.last_sign_in_at);
+        doctor.last_sign_in = formatTime;
+        return doctor;
     }
 
 }

@@ -14,7 +14,7 @@ module.exports = app => {
   router.get('/all', controller.client.post.getAllPosts);
   router.get('/media', controller.client.post.getMedia);
   router.get('/doctors', controller.client.post.getDoctors);
-
+  router.get('/doctorinfo', controller.client.post.getDoctorinfo);
   router.get('/getAllDistricts', controller.client.post.getDistrict);
   router.get('/getAllDepartments', controller.client.post.getDepartment);
   router.get('/getAllYears', controller.client.post.getYear);

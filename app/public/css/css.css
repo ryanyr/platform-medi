@@ -153,9 +153,16 @@ body{
     width: 100% !important;
     height: auto; 
 }
-
+.postlist .avatar{
+    text-align: center;
+}
+.postlist .avatar img{
+    width: 100% !important;
+    height: auto; 
+    margin: 0 auto;
+}
 .admin-container{
-    width: 100%;
+    width: 80%;
     min-height: 100%;
 }
 .admin-container .navbar{
