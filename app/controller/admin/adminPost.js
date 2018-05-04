@@ -340,7 +340,7 @@ class adminController extends Controller {
       async doctorDelete() {
         var id = this.ctx.request.body.id;
         console.log(id);
-        var result = await this.ctx.service.admin.mediaDelete(id);
+        var result = await this.ctx.service.admin.doctorDelete(id);
         console.log(result);
         if(result){
           this.ctx.status=200;

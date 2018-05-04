@@ -422,7 +422,7 @@ class PostsListService extends Service{
 
     async doctorDelete(id){
         var id = id;
-        const posts = await this.app.model.Media.destroy({
+        const doctor = await this.app.model.User.destroy({
             where:{
                 id:id
             }
