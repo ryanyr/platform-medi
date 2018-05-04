@@ -381,18 +381,18 @@ class PostsListService extends Service{
         var id = format.generateUUID();
         var savedate = {
             id:id,
-            userid:id,
-            title:data.title,
-            department:data.department,
-            intro:data.intro,
-            content:data.content,
-            province:data.province,
-            mediaurl:data.mediaurl, 
-            city:data.city, 
-            author:data.author,//取session中user信息 todo           
-            post_time:date
+            role:2,
+            name: data.name,
+            passwd:'123456',
+            department: data.department,
+            company: data.company,
+            telephone: data.telephone,
+            age: data.age,
+            intro: data.intro,
+            avatar: data.avatar,      
+            last_sign_in_at:date
         }
-        const posts = await this.app.model.Media.create(savedate);
+        const posts = await this.app.model.User.create(savedate);
         return true;
     }
 
@@ -412,7 +412,7 @@ class PostsListService extends Service{
             author:data.author,//取session中user信息 todo           
             post_time:date
         }
-        const posts = await this.app.model.Media.update(savedate,{
+        const posts = await this.app.model.User.update(savedate,{
             where:{
                 id:id
             }

@@ -228,7 +228,7 @@ class adminController extends Controller {
         console.log(id);
         var posts = await this.ctx.service.admin.getMediaDetail(id);
         console.log(posts);
-        await this.ctx.render('admin/media.html', {
+        await this.ctx.render('admin/doctor.html', {
           post:posts,
           title: '会议详情',
         });
@@ -240,7 +240,7 @@ class adminController extends Controller {
         console.log(id);
         var posts = await this.ctx.service.admin.getMediaDetail(id);
         console.log(posts);
-        await this.ctx.render('admin/mediaedit.html', {
+        await this.ctx.render('admin/doctoredit.html', {
           post:posts,
           title: '会议编辑',
         });
@@ -249,23 +249,42 @@ class adminController extends Controller {
 
       async doctorAdd() {
 
-        await this.ctx.render('admin/mediaadd.html', {
-          title: '添加视频',
+        await this.ctx.render('admin/doctoradd.html', {
+          title: '添加专家',
         });
     
       }
 
       async doctorSave() {
-        var data = this.ctx.request.body;
-        // console.log(data);
-        var result = await this.ctx.service.admin.mediaSave(data);
-        console.log(result);
-        if(result){
-          this.ctx.status=200;
-          this.ctx.body={message:'保存成功'};
-        }else{
-          this.ctx.status=403;
-          this.ctx.body={message:'保存失败，请稍后再试'};
+        const stream = await this.ctx.getFileStream();
+        console.log(stream);
+        // const filename = encodeURIComponent(stream.filename) + path.extname(stream.filename).toLowerCase();
+        const filename = uuidV1() + path.extname(stream.filename).toLowerCase();
+        const target = path.join(this.config.baseDir, 'app/public/uploadimg/', filename);
+        const writeStream = fs.createWriteStream(target);
+        const url = '../public/uploadimg/' + filename;
+        try {
+          await awaitWriteStream(stream.pipe(writeStream));
+          var data = {
+            name: stream.fields.name,
+            department: stream.fields.department,
+            company: stream.fields.company,
+            telephone: stream.fields.telephone,
+            age: stream.fields.age,
+            intro: stream.fields.intro,
+            avatar: url
+          }
+          var result = await this.ctx.service.admin.doctorSave(data);
+          if(result){
+            this.ctx.status=200;
+            this.ctx.body={message:'保存成功'};
+          }else{
+            this.ctx.status=403;
+            this.ctx.body={message:'保存失败，请稍后再试'};
+          }
+        } catch (err) {
+          await sendToWormhole(stream);
+          throw err;
         }
       }
 

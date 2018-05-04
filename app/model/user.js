@@ -1,7 +1,6 @@
 module.exports = app => {
     const { STRING, INTEGER, DATE, BIGINT , TEXT } = app.Sequelize;
     const User = app.model.define("user", {
-      login: STRING,
       id: {
         type: STRING,
         primaryKey : true,
