@@ -11,7 +11,7 @@ module.exports = app => {
       title:STRING,
       department:STRING,
       intro:TEXT,
-      mediaurl:STRING,
+      mediaurl:TEXT,
       content:TEXT,
       province:STRING,
       city:STRING,                      

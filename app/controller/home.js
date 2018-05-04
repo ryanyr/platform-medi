@@ -6,10 +6,10 @@ class HomeController extends Controller {
 
   async index() {
 
+    var banners = await this.ctx.service.postsList.getBanners();
+    // console.log(banners);
     await this.ctx.render('client/home.html', {
-      user: {
-        name: 'foobar',
-      },
+      banners:banners,
       title: '医疗会议查询平台',
     });
 

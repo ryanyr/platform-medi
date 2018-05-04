@@ -10,15 +10,25 @@
 </div>
 <div class="postlist">
     <div class="list-group">
-        {% for post in posts %}
-        <a href="/post?id={{post.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+        {% for media in media %}
+        <!-- <a href="/media?id={{media.id}}" class="list-group-item list-group-item-action flex-column align-items-start"> -->
+        <div  class="list-group-item list-group-item-action flex-column align-items-start"></a>
             <div class="d-flex w-100 justify-content-between">
-            <p class="title">{{post.title}}</p>            
+            <p class="title">{{media.title}}</p>            
             </div>
-            <p class="time">{{post.meetingTime}}</p>
-            <p class="content">{{post.intro}}</p>
-            <p class="location">{{post.province}}-{{post.city}}</p>
-        </a>
+            <p class="content">{{media.author}}</p>
+            <p class="time">{{media.posttime}}</p>
+            <p class="content">{{media.department}}</p>
+            <p class="content">{{media.intro}}</p>
+            <p class="location">{{media.province}}-{{media.city}}</p>
+            <p class="media">
+                <video class="vedio" src="{{media.mediaurl}}" controls="controls">
+                    您的浏览器不支持 video 标签。
+                </video>
+            </p>            
+            <p class="content">{{media.content}}</p>
+        </div>
+        <!-- </a> -->
         {% endfor%}
     </div>
 </div>

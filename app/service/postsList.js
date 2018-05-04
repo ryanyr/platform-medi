@@ -4,6 +4,13 @@ const format = require('./format');
 
 class PostsListService extends Service{
 
+    async getBanners(){
+        const banners = await this.app.model.Banner.findAll();
+        // console.log(banners);
+        return banners;
+    }
+
+
     async getAllPost(){
         const posts = await this.app.model.Post.findAll();
         
@@ -191,7 +198,7 @@ class PostsListService extends Service{
         
         for(var i=0; i<media.length; i++){             
             var formatTime = format.formatDate(media[i].post_time);
-            media[i].post_time = formatTime;
+            media[i].posttime = formatTime;
         }
         return media;
     }

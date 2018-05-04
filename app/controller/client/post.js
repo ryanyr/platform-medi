@@ -26,9 +26,9 @@ class postController extends Controller {
 
   async getMedia() {
 
-    var posts = await this.ctx.service.postsList.getMedia();
+    var media = await this.ctx.service.postsList.getMedia();
     await this.ctx.render('client/mediaList.html', {
-      posts:posts,
+      media:media,
       title: '视频列表',
     });
 
