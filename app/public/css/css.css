@@ -64,6 +64,11 @@ body{
     color: #fff !important;
     font-size: 0.8rem;
 }
+.home-menu-block a{
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+}
 .search{
     margin: 10px;
 }

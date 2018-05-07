@@ -214,6 +214,22 @@ class PostsListService extends Service{
         return media;
     }
 
+    async getMediaByKeywords(data){
+        var keyword = data.keyword;
+        keyword = '%'+keyword+'%';
+        console.log(keyword);
+        const media = await this.app.model.Media.findAll({
+            where: { title: {
+                $like:keyword
+            } } 
+        });
+        for(var i=0; i<media.length; i++){             
+            var formatTime = format.formatDate(media[i].post_time);
+            media[i].posttime = formatTime;
+        }       
+        return media;
+    }
+
     async getDoctors(){
         const doctors = await this.app.model.User.findAll({
             where:{
@@ -233,6 +249,18 @@ class PostsListService extends Service{
         var formatTime = format.formatDate(doctor.last_sign_in_at);
         doctor.last_sign_in = formatTime;
         return doctor;
+    }
+
+    async getDoctorByKeywords(data){
+        var keyword = data.keyword;
+        keyword = '%'+keyword+'%';
+        console.log(keyword);
+        const doctors = await this.app.model.User.findAll({
+            where: { name: {
+                $like:keyword
+            },role:2 } 
+        });    
+        return doctors;
     }
 
 }

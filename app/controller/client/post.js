@@ -160,6 +160,24 @@ class postController extends Controller {
     });
   }
 
+  async getMediaByKeywords(){
+    var req = await this.ctx.request.query;
+    console.log(req);
+    var media = await this.ctx.service.postsList.getMediaByKeywords(req);
+    // console.log(media);
+    this.ctx.body = {media: media};
+    this.ctx.status = 200;
+  }
+
+  async getDoctorByKeywords(){
+    var req = await this.ctx.request.query;
+    console.log(req);
+    var doctors = await this.ctx.service.postsList.getDoctorByKeywords(req);
+    // console.log(media);
+    this.ctx.body = {doctors: doctors};
+    this.ctx.status = 200;
+  }
+
   
 }
 

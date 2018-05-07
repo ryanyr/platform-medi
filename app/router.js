@@ -27,6 +27,8 @@ module.exports = app => {
   router.get('/getPostsByAll', controller.client.post.getPostsByAll);
   router.get('/post', controller.client.post.getPostDetail);
   router.get('/getPostsByKeywords', controller.client.post.getPostsByKeywords);
+  router.get('/getMediaByKeywords', controller.client.post.getMediaByKeywords);
+  router.get('/getDoctorByKeywords', controller.client.post.getDoctorByKeywords);
 
 
   //admin
