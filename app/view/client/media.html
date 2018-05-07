@@ -10,8 +10,7 @@
 </div>
 <div class="postlist">
     <div class="list-group">
-        {% for media in media %}
-        <a href="/media?id={{media.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div  class="list-group-item list-group-item-action flex-column align-items-start"></a>
             <div class="d-flex w-100 justify-content-between">
             <p class="title">{{media.title}}</p>            
             </div>
@@ -20,9 +19,16 @@
             <p class="content">科室：{{media.department}}</p>
             <p class="time">视频发布时间：{{media.posttime}}</p>            
             <p class="content">视频简介：{{media.intro}}</p>            
-        </a>
-        {% endfor%}
+            <p class="media">
+                {{media.mediaurl | safe}}
+            </p>  
+            <!-- <p class="media">
+                <video class="vedio" src="{{media.mediaurl}}" controls="controls">
+                    您的浏览器不支持 video 标签。
+                </video>
+            </p>     -->        
+            <p class="content"><pre class="textpre">{{media.content}}</pre></p>
+        </div>
     </div>
 </div>
-
 {% endblock%}

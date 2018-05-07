@@ -34,6 +34,17 @@ class postController extends Controller {
 
   }
 
+  async getMediaDetail() {
+    var id = await this.ctx.request.query;
+    // console.log(postid);
+    var media = await this.ctx.service.postsList.getMediaDetail(id);
+    // console.log(post);
+    await this.ctx.render('client/media.html', {
+      media:media,
+      title: '视频详情',
+    });
+  }
+
   async getDoctors() {
 
     var doctors = await this.ctx.service.postsList.getDoctors();

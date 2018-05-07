@@ -203,6 +203,17 @@ class PostsListService extends Service{
         return media;
     }
 
+    async getMediaDetail(data){
+        var id = data.id;
+        const media = await this.app.model.Media.findOne({
+            where: { id: id } 
+        });
+        var formatTime = format.formatDate(media.post_time);
+        media.posttime = formatTime;
+
+        return media;
+    }
+
     async getDoctors(){
         const doctors = await this.app.model.User.findAll({
             where:{

@@ -25,7 +25,8 @@
         </p>
         <p>
             <label for="mediaurl">视频链接:</label>
-            <input type="text" name="mediaurl" id="mediaurl" placeholder="视频链接"/>
+            <input type="text" class="vedioEdit" name="mediaurl" id="mediaurl" placeholder="填入视频id"/>
+            <div class="alert alert-warning">添加视频地址的唯一id码，打开腾讯视频网页后，将视频地址id贴在此处，如https://v.qq.com/x/cover/kifd35ul1tmuhr4/<span class="alert-link">v0643hc7sun</span>.html中加粗部分。</div>
         </p>
         <p>
             <label for="intro" class="textarealabel">视频简介:</label>
@@ -48,6 +49,8 @@
             var intro = $('#intro').val();
             var content = $('#content').val();
             var mediaurl = $('#mediaurl').val();
+            //拼接视频url
+            mediaurl =  '<iframe class="video_iframe" style="z-index:1;" src="http://v.qq.com/iframe/player.html?vid=' + mediaurl +'&amp;width=500&amp;height=375&amp;auto=0&tiny=1" allowfullscreen="" frameborder="0" height="375" width="500"></iframe>';
             var data = {
                 title:title,
                 province:province,
