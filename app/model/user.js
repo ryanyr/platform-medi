@@ -10,8 +10,9 @@ module.exports = app => {
         type: INTEGER,//0普通用户，1管理人员，2医生学者
         default: 0
       },
+      username: STRING(30),
       name: STRING(30),
-      passwd: STRING(32),
+      password: STRING(32),
       age: INTEGER,
       telephone: BIGINT(11),
       avatar: STRING,

@@ -11,23 +11,41 @@ module.exports = app => {
     }
 
     app.passport.use(new LocalStrategy({
-            passReqToCallback: true
+            passReqToCallback: true,
+            usernameField:'username'
         }, (req, username, password, done) => {
-            // format user
-            const user = {
-                provider: 'local',
-                username,
-                password
-            };
-            debug('%s %s get user: %j', req.method, req.url, user);
-            app
-                .passport
-                .doVerify(req, user, done);
+            var User = {
+                username: username,
+                password: password
+            }
+            app.passport.doVerify(req, user, done); 
+            
         }));
 
     // 处理用户信息
-    app.passport.verify(async (ctx, user) => {});
-    app.passport.serializeUser(async (ctx, user) => {});
-    app.passport.deserializeUser(async (ctx, user) => {});
+    app.passport.verify(async (ctx, user) => {
+        var user = await this.app.model.User.findOne({
+            where:{
+                username: username,
+            }
+        })
+        if(!user){
+            return done(null, false, { message: '用户名或邮箱 ' + username + ' 不存在'});
+        }else{
+            // bcrypt.compare(password, user.password, callback); 
+            return done(null, user);
+        }
+    });
+    app.passport.serializeUser(async (ctx, user) => {
+        done(null,user.id);
+    });
+    app.passport.deserializeUser(async (ctx, user) => {
+        var user = await this.app.model.User.findOne({
+            where:{
+                id:id
+            }
+        })
+        done(null, user);
+    }); 
 
 }

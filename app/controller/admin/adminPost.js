@@ -19,7 +19,7 @@ class adminController extends Controller {
 
     async doLogin() {
         var req = this.ctx.request.body;
-        console.log(req);
+        // console.log(req);
         this.ctx.body = {posts:1}
         this.ctx.status = 200;
         // var posts = await this.ctx.service.postsList.getAllPost();
@@ -56,9 +56,9 @@ class adminController extends Controller {
 
       async postdetail() {
         var id = this.ctx.request.query;
-        console.log(id);
+        // console.log(id);
         var posts = await this.ctx.service.admin.getPostDetail(id);
-        console.log(posts);
+        // console.log(posts);
         await this.ctx.render('admin/post.html', {
           post:posts,
           title: '会议详情',
@@ -68,9 +68,9 @@ class adminController extends Controller {
 
       async postEdit() {
         var id = this.ctx.request.query;
-        console.log(id);
+        // console.log(id);
         var posts = await this.ctx.service.admin.getPostDetail(id);
-        console.log(posts);
+        // console.log(posts);
         await this.ctx.render('admin/postedit.html', {
           post:posts,
           title: '会议编辑',
@@ -94,9 +94,9 @@ class adminController extends Controller {
 
       async postDelete() {
         var id = this.ctx.request.body.id;
-        console.log(id);
+        // console.log(id);
         var result = await this.ctx.service.admin.postDelete(id);
-        console.log(result);
+        // console.log(result);
         if(result){
           this.ctx.status=200;
           this.ctx.body={message:'删除成功'};
@@ -119,7 +119,7 @@ class adminController extends Controller {
         var data = this.ctx.request.body;
         // console.log(data);
         var result = await this.ctx.service.admin.postSave(data);
-        console.log(result);
+        // console.log(result);
         if(result){
           this.ctx.status=200;
           this.ctx.body={message:'保存成功'};
@@ -140,9 +140,9 @@ class adminController extends Controller {
 
       async mediadetail() {
         var id = this.ctx.request.query;
-        console.log(id);
+        // console.log(id);
         var posts = await this.ctx.service.admin.getMediaDetail(id);
-        console.log(posts);
+        // console.log(posts);
         await this.ctx.render('admin/media.html', {
           post:posts,
           title: '会议详情',
@@ -152,9 +152,9 @@ class adminController extends Controller {
 
       async mediaEdit() {
         var id = this.ctx.request.query;
-        console.log(id);
+        // console.log(id);
         var posts = await this.ctx.service.admin.getMediaDetail(id);
-        console.log(posts);
+        // console.log(posts);
         await this.ctx.render('admin/mediaedit.html', {
           post:posts,
           title: '会议编辑',
@@ -174,7 +174,7 @@ class adminController extends Controller {
         var data = this.ctx.request.body;
         // console.log(data);
         var result = await this.ctx.service.admin.mediaSave(data);
-        console.log(result);
+        // console.log(result);
         if(result){
           this.ctx.status=200;
           this.ctx.body={message:'保存成功'};
@@ -200,9 +200,9 @@ class adminController extends Controller {
 
       async mediaDelete() {
         var id = this.ctx.request.body.id;
-        console.log(id);
+        // console.log(id);
         var result = await this.ctx.service.admin.mediaDelete(id);
-        console.log(result);
+        // console.log(result);
         if(result){
           this.ctx.status=200;
           this.ctx.body={message:'删除成功'};
@@ -225,7 +225,7 @@ class adminController extends Controller {
 
       async doctordetail() {
         var id = this.ctx.request.query;
-        console.log(id);
+        // console.log(id);
         var doctor = await this.ctx.service.admin.getDoctorDetail(id);
         // console.log(doctor);
         await this.ctx.render('admin/doctor.html', {
@@ -237,7 +237,7 @@ class adminController extends Controller {
 
       async doctorEdit() {
         var id = this.ctx.request.query;
-        console.log(id);
+        // console.log(id);
         var doctor = await this.ctx.service.admin.getDoctorDetail(id);
         // console.log(posts);
         await this.ctx.render('admin/doctoredit.html', {
@@ -290,7 +290,7 @@ class adminController extends Controller {
 
       async doctorUpdate() {
         const stream = await this.ctx.getFileStream();
-        console.log(stream);
+        // console.log(stream);
         // const filename = encodeURIComponent(stream.filename) + path.extname(stream.filename).toLowerCase();
         const filename = uuidV1() + path.extname(stream.filename).toLowerCase();
         const target = path.join(this.config.baseDir, 'app/public/uploadimg/', filename);
@@ -339,9 +339,9 @@ class adminController extends Controller {
 
       async doctorDelete() {
         var id = this.ctx.request.body.id;
-        console.log(id);
+        // console.log(id);
         var result = await this.ctx.service.admin.doctorDelete(id);
-        console.log(result);
+        // console.log(result);
         if(result){
           this.ctx.status=200;
           this.ctx.body={message:'删除成功'};
@@ -374,7 +374,7 @@ class adminController extends Controller {
         var data = this.ctx.request.body;
         // console.log(data);
         // var result = await this.ctx.service.admin.mediaSave(data);
-        console.log(result);
+        // console.log(result);
         if(result){
           this.ctx.status=200;
           this.ctx.body={message:'保存成功'};
@@ -386,7 +386,7 @@ class adminController extends Controller {
 
       async upload() {
         const stream = await this.ctx.getFileStream();
-        console.log(stream);
+        // console.log(stream);
         // const filename = encodeURIComponent(stream.filename) + path.extname(stream.filename).toLowerCase();
         const filename = uuidV1() + path.extname(stream.filename).toLowerCase();
         const target = path.join(this.config.baseDir, 'app/public/uploadimg/', filename);

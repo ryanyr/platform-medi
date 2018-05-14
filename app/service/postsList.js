@@ -217,7 +217,7 @@ class PostsListService extends Service{
     async getMediaByKeywords(data){
         var keyword = data.keyword;
         keyword = '%'+keyword+'%';
-        console.log(keyword);
+        // console.log(keyword);
         const media = await this.app.model.Media.findAll({
             where: { title: {
                 $like:keyword
@@ -254,7 +254,7 @@ class PostsListService extends Service{
     async getDoctorByKeywords(data){
         var keyword = data.keyword;
         keyword = '%'+keyword+'%';
-        console.log(keyword);
+        // console.log(keyword);
         const doctors = await this.app.model.User.findAll({
             where: { name: {
                 $like:keyword
