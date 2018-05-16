@@ -20,11 +20,11 @@ function getCsrf() {
   }
 
 function doLogin(){
-    var account = $('#inputAccount').val();
-    var pwd = $('#inputPassword').val();
+    var username = $('#username').val();
+    var password = $('#password').val();
     var data = {
-        account : account,
-        pwd : pwd
+        username : username,
+        password : password
     };
    /*  var data = new FormData();
     data.append('account',account);

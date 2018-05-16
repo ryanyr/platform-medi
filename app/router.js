@@ -43,7 +43,7 @@ module.exports = app => {
 
   // 鉴权成功后的回调页面
   router.get('/authCallback', controller.admin.adminPost.home);
-  router.post('/admin/login', app.passport.authenticate('local', { successRedirect: '/admin/postlist' }));
+  router.post('/admin/doLogin', app.passport.authenticate('local', { successRedirect: '/admin/postlist' }));
   // router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
   router.get('/admin/userlist', controller.admin.adminPost.userlist);
 
