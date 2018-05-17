@@ -35,6 +35,8 @@ module.exports = app => {
   router.get('/admin/', controller.admin.adminPost.home);
   router.get('/admin/login', controller.admin.adminPost.login);  
   router.get('/admin/index', controller.admin.adminPost.home);
+  router.get('/admin/reg', controller.admin.adminPost.reg);  
+  router.post('/admin/doReg', controller.admin.adminPost.doReg); 
 
   const localAuth = app.passport.authenticate('local', {
     successRedirect: '/admin/postlist',
@@ -43,7 +45,7 @@ module.exports = app => {
 
   // 鉴权成功后的回调页面
   router.get('/authCallback', controller.admin.adminPost.home);
-  router.post('/admin/doLogin', app.passport.authenticate('local', { successRedirect: '/admin/postlist' }));
+  router.post('/admin/doLogin', localAuth);
   // router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
   router.get('/admin/userlist', controller.admin.adminPost.userlist);
 

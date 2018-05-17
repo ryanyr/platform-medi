@@ -47,3 +47,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.modal-content{
+  padding: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}

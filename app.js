@@ -35,7 +35,7 @@ module.exports = app => {
         }else{
             // bcrypt.compare(password, user.password, callback); 
             // return done(null, uuser);
-            console.log(1111111111);
+            // console.log(1111111111);
         }
     });
     app.passport.serializeUser(async (ctx, user) => {

@@ -17,6 +17,15 @@ class adminController extends Controller {
     
       }
 
+    async reg() {
+      // var posts = await this.ctx.service.postsList.getAllPost();
+      await this.ctx.render('admin/reg.html', {
+      //   posts:posts,
+        title: '后台管理平台-注册',
+      });
+  
+    }
+
     async doLogin() {
         var req = this.ctx.request.body;
         // console.log(req);
@@ -25,6 +34,16 @@ class adminController extends Controller {
         // var posts = await this.ctx.service.postsList.getAllPost();
     
       }
+
+    async doReg() {
+        var req = this.ctx.request.body;
+        console.log(req);
+        var user = await this.ctx.service.admin.doReg(req);
+        this.ctx.body = {posts:1}
+        this.ctx.status = 200;
+        // var posts = await this.ctx.service.postsList.getAllPost();
+    
+    }
 
     async home() {
         // var posts = await this.ctx.service.postsList.getAllPost();

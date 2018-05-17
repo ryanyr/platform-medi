@@ -4,6 +4,30 @@ const format = require('./format');
 
 class PostsListService extends Service{
 
+    async doReg(data){
+        console.log(data);
+        var data = data;
+        var date = new Date();
+        // console.log(date);
+        var id = format.generateUUID();
+        var savedate = {
+            id:id,
+            role:0,
+            username:data.username,
+            name: '',
+            passwd:data.password,
+            department: data.department||'',
+            company: data.company||'',
+            telephone: data.telephone||11111111111,
+            age: data.age||20,
+            intro: data.intro||'',
+            avatar: data.avatar||'',      
+            last_sign_in_at:date
+        }
+        const posts = await this.app.model.User.create(savedate);
+        return true;
+    }
+
     async getFPPost(){
         const posts = await this.app.model.Post.findAll({
             limit:10
