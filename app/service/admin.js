@@ -5,7 +5,7 @@ const format = require('./format');
 class PostsListService extends Service{
 
     async doReg(data){
-        console.log(data);
+        // console.log(data);
         var data = data;
         var date = new Date();
         // console.log(date);
@@ -15,7 +15,7 @@ class PostsListService extends Service{
             role:0,
             username:data.username,
             name: '',
-            passwd:data.password,
+            password:data.password,
             department: data.department||'',
             company: data.company||'',
             telephone: data.telephone||11111111111,

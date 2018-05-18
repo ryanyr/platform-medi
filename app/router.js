@@ -32,24 +32,38 @@ module.exports = app => {
 
 
   //admin
-  router.get('/admin/', controller.admin.adminPost.home);
-  router.get('/admin/login', controller.admin.adminPost.login);  
-  router.get('/admin/index', controller.admin.adminPost.home);
+
+  router.get('/admin/login', controller.admin.adminPost.login); 
+
   router.get('/admin/reg', controller.admin.adminPost.reg);  
   router.post('/admin/doReg', controller.admin.adminPost.doReg); 
 
   const localAuth = app.passport.authenticate('local', {
     successRedirect: '/admin/postlist',
     failureRedirect: '/admin/login'
-  });
+  }/* ,(err, user, info)=>{
+    if (err) return false;
+    if (!user) {
+      return res.redirect('/admin/login');
+    }
+    req.logIn(user, function(err) {
+      if (err) return next(err);
+      req.flash('success', { msg: '登录成功！' });
+      res.redirect('/admin/index');
+    });
+  } */);
+
+  const auth = app.middleware.auth();
 
   // 鉴权成功后的回调页面
   router.get('/authCallback', controller.admin.adminPost.home);
   router.post('/admin/doLogin', localAuth);
   // router.post('/admin/doLogin', controller.admin.adminPost.doLogin);
-  router.get('/admin/userlist', controller.admin.adminPost.userlist);
 
-  router.get('/admin/postlist',localAuth, controller.admin.adminPost.postlist);
+  router.get('/admin/', controller.admin.adminPost.home);
+  router.get('/admin/index',auth,controller.admin.adminPost.home);
+  router.get('/admin/userlist',auth, controller.admin.adminPost.userlist);
+  router.get('/admin/postlist',auth, controller.admin.adminPost.postlist);
   router.get('/admin/post', controller.admin.adminPost.postdetail);
   router.get('/admin/editpost', controller.admin.adminPost.postEdit);
   router.get('/admin/addpost', controller.admin.adminPost.postAdd);

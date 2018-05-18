@@ -37,8 +37,11 @@ class adminController extends Controller {
 
     async doReg() {
         var req = this.ctx.request.body;
-        console.log(req);
+        // console.log(req);
         var user = await this.ctx.service.admin.doReg(req);
+        if(user){
+            this.ctx.login(req);
+        }
         this.ctx.body = {posts:1}
         this.ctx.status = 200;
         // var posts = await this.ctx.service.postsList.getAllPost();

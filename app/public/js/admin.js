@@ -26,6 +26,27 @@ function doLogin(){
         username : username,
         password : password
     };
+    //匹配验证
+    var reg = /^1(3|4|5|7|8)\d{9}$/;
+    if (username === '') {
+      alert('请输入手机号');
+      return;
+    }
+
+    if (!reg.test(username)) {
+      alert('手机号不正确');
+      return;
+    }
+
+    var re = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,16})$/;
+    if (password === '') {
+        alert('请输入密码');
+        return;
+    }
+    if (!re.test(password)) {
+        alert('必须输入6到16位字母与数字组合的密码');
+        return;
+    }
    /*  var data = new FormData();
     data.append('account',account);
     data.append('pwd',pwd); */

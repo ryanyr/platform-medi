@@ -25,9 +25,11 @@ module.exports = app => {
     app.passport.verify(async (ctx, user) => {
         console.log(user);
         var username = user.username;
+        var password = user.password;
         var uuser = await ctx.model.User.findOne({
             where:{
                 username: username,
+                password:password
             }
         })
         if(uuser){
@@ -35,18 +37,25 @@ module.exports = app => {
         }else{
             // bcrypt.compare(password, user.password, callback); 
             // return done(null, uuser);
-            // console.log(1111111111);
+            console.log(333333);
+            ctx.body = {result:false};
+            ctx.status = 200;
         }
     });
-    app.passport.serializeUser(async (ctx, user) => {
-        // done(null,user.id);
+    app.passport.serializeUser(async (ctx, user) => {        
+        console.log(1111111111);
+        // console.log(user);
+        // ctx.login(user);
     });
     app.passport.deserializeUser(async (ctx, user) => {
+        console.log(22222222222222);
+        var id = user.id;
         var uuser = await ctx.model.User.findOne({
             where:{
                 id:id
             }
         })
+        console.log(uuser);
         // done(null, uuser);
     }); 
 
