@@ -64,13 +64,14 @@ function doLogin(){
         contentType: 'application/json',
         processData: false,
     }).done(function(res){
-        var data = res.posts;
-        // if(data.length>0){
+        console.log(res);
+        if(res.islogin){
             console.log(1);
             console.log(data);
             window.location.pathname ='admin/index';
-            // displayPost(data);
-        // }        
+         }else{
+             alert(res.msg);
+         }        
     }).fail(function(err){
         console.log(err);
         alert('用户名或登录密码不正确');

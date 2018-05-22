@@ -10,7 +10,7 @@ module.exports = app => {
             });
     }
 
-    app.passport.use(new LocalStrategy({
+    /* app.passport.use(new LocalStrategy({
             passReqToCallback: true,
             usernameField:'username'
         }, (req, username, password, done) => {
@@ -37,14 +37,15 @@ module.exports = app => {
         }else{
             // bcrypt.compare(password, user.password, callback); 
             // return done(null, uuser);
-            console.log(333333);
-            ctx.body = {result:false};
             ctx.status = 200;
+            ctx.body = {userRight:false};
         }
     });
     app.passport.serializeUser(async (ctx, user) => {        
         console.log(1111111111);
-        // console.log(user);
+        var isAuth = ctx.isAuthenticated();
+        console.log('isAuth++++++++++++++++++++++++++++++++++++++++'+isAuth);
+        // console.log(ctx.user);
         // ctx.login(user);
     });
     app.passport.deserializeUser(async (ctx, user) => {
@@ -57,6 +58,6 @@ module.exports = app => {
         })
         console.log(uuser);
         // done(null, uuser);
-    }); 
+    });  */
 
 }

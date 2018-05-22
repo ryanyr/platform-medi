@@ -28,6 +28,22 @@ class PostsListService extends Service{
         return true;
     }
 
+    async doLogin(data){
+        // console.log(data);
+        var data = data;
+        var username = data.username;
+        var password = data.password;
+        // console.log(date);
+        const user = await this.app.model.User.findOne({
+            where:{
+                username:username,
+                password:password
+            }
+        });
+        return user;
+        
+    }
+
     async getFPPost(){
         const posts = await this.app.model.Post.findAll({
             limit:10

@@ -7,7 +7,8 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1519788741490_4312';
 
   // add your config here
-  config.middleware = ['auth'];
+  // config.middleware = ['auth'];
+  config.middleware = [];
 
   config.view = {
     defaultViewEngine: 'nunjucks',
@@ -63,6 +64,13 @@ module.exports = appInfo => {
     saltRounds: 10 // default 10
   }
 
+  exports.session = {
+    key: 'EGG_SESS',
+    maxAge: 24 * 3600 * 1000, // 1 天
+    httpOnly: true,
+    encrypt: true,
+  };
+  
   return config;
 };
 
