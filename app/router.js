@@ -52,34 +52,34 @@ module.exports = app => {
 
   router.get('/admin/', auth, controller.admin.adminPost.home);
   router.get('/admin/index',auth,controller.admin.adminPost.home);
-  router.get('/admin/userlist',controller.admin.adminPost.userlist);
-  router.get('/admin/postlist',controller.admin.adminPost.postlist);
-  router.get('/admin/post', controller.admin.adminPost.postdetail);
-  router.get('/admin/editpost', controller.admin.adminPost.postEdit);
-  router.get('/admin/addpost', controller.admin.adminPost.postAdd);
-  router.post('/admin/updatepost', controller.admin.adminPost.postUpdate);
-  router.post('/admin/savepost', controller.admin.adminPost.postSave);
-  router.post('/admin/deletepost', controller.admin.adminPost.postDelete);
+  router.get('/admin/userlist',auth,controller.admin.adminPost.userlist);
+  router.get('/admin/postlist',auth,controller.admin.adminPost.postlist);
+  router.get('/admin/post', auth,controller.admin.adminPost.postdetail);
+  router.get('/admin/editpost',auth, controller.admin.adminPost.postEdit);
+  router.get('/admin/addpost',auth, controller.admin.adminPost.postAdd);
+  router.post('/admin/updatepost', auth,controller.admin.adminPost.postUpdate);
+  router.post('/admin/savepost', auth,controller.admin.adminPost.postSave);
+  router.post('/admin/deletepost', auth,controller.admin.adminPost.postDelete);
 
-  router.get('/admin/medialist', controller.admin.adminPost.medialist);
-  router.get('/admin/media', controller.admin.adminPost.mediadetail);
-  router.get('/admin/editmedia', controller.admin.adminPost.mediaEdit);
-  router.get('/admin/addmedia', controller.admin.adminPost.mediaAdd);
-  router.post('/admin/updatemedia', controller.admin.adminPost.mediaUpdate);
-  router.post('/admin/savemedia', controller.admin.adminPost.mediaSave);
-  router.post('/admin/deletemedia', controller.admin.adminPost.mediaDelete);
+  router.get('/admin/medialist',auth, controller.admin.adminPost.medialist);
+  router.get('/admin/media',auth, controller.admin.adminPost.mediadetail);
+  router.get('/admin/editmedia',auth, controller.admin.adminPost.mediaEdit);
+  router.get('/admin/addmedia',auth, controller.admin.adminPost.mediaAdd);
+  router.post('/admin/updatemedia',auth, controller.admin.adminPost.mediaUpdate);
+  router.post('/admin/savemedia',auth, controller.admin.adminPost.mediaSave);
+  router.post('/admin/deletemedia',auth, controller.admin.adminPost.mediaDelete);
 
-  router.get('/admin/doctorlist', controller.admin.adminPost.doctorlist);
-  router.get('/admin/doctor', controller.admin.adminPost.doctordetail);
-  router.get('/admin/editdoctor', controller.admin.adminPost.doctorEdit);
-  router.get('/admin/adddoctor', controller.admin.adminPost.doctorAdd);
-  router.post('/admin/updatedoctor', controller.admin.adminPost.doctorUpdate);
-  router.post('/admin/updatedoctorwithout', controller.admin.adminPost.doctorNopicUpdate);
-  router.post('/admin/savedoctor', controller.admin.adminPost.doctorSave);
-  router.post('/admin/deletedoctor', controller.admin.adminPost.doctorDelete);
+  router.get('/admin/doctorlist',auth, controller.admin.adminPost.doctorlist);
+  router.get('/admin/doctor',auth, controller.admin.adminPost.doctordetail);
+  router.get('/admin/editdoctor',auth, controller.admin.adminPost.doctorEdit);
+  router.get('/admin/adddoctor',auth, controller.admin.adminPost.doctorAdd);
+  router.post('/admin/updatedoctor',auth, controller.admin.adminPost.doctorUpdate);
+  router.post('/admin/updatedoctorwithout',auth, controller.admin.adminPost.doctorNopicUpdate);
+  router.post('/admin/savedoctor',auth, controller.admin.adminPost.doctorSave);
+  router.post('/admin/deletedoctor', auth,controller.admin.adminPost.doctorDelete);
 
-  router.get('/admin/modifycode', controller.admin.adminPost.modifycode);
-  router.get('/admin/system', controller.admin.adminPost.system);
-  router.post('/admin/uploadBanner', controller.admin.adminPost.upload);
+  router.get('/admin/modifycode',auth, controller.admin.adminPost.modifycode);
+  router.get('/admin/system',auth, controller.admin.adminPost.system);
+  router.post('/admin/uploadBanner', auth,controller.admin.adminPost.upload);
 
 };

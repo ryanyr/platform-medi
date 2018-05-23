@@ -19,7 +19,7 @@ module.exports = () => {
       
       //基于cookie session
       var user = ctx.session.user;
-      console.log(user);
+      // console.log('111111111111111111111111111111111'+user);
       if(user){
         await next();
       }else{
