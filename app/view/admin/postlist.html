@@ -52,8 +52,8 @@
         
         <div class="row"></div>
             <div class="col-xs-12">
-                <span class='btn searchbtn'>查询</span>
-                <span class='btn resetbtn'>重置</span>
+                <span class='btn searchbtn' onclick="searchPost()">查询</span>
+                <span class='btn resetbtn' onclick="clear()">重置</span>
                 <a href="/admin/addpost"><span class='btn addbtn'>新增</span></a>
             </div>  
         </div>    
@@ -140,5 +140,45 @@
             alert('发生错误');
         }) 
     });
+    function searchPost(){
+        var searchCondition = {
+            province:$('#province').val(),
+            city:$('#city').val(),
+            department:$('#department').val(),
+            year:$('#year').val(),
+            contentkewords:$('#contentkewords').val(),
+            participatkewords:$('#participatkewords').val()
+        }
+        $.ajax({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader('x-csrf-token', csrftoken);
+                }
+            },
+            url:'findPost',
+            method:'post',
+            datatype: 'json',
+            // contentType:'application/x-www-form-urlencoded',
+            data : JSON.stringify(searchCondition),
+            contentType: 'application/json',
+            processData: false,
+        }).done(function(res){
+            var data = res;
+            
+        }).fail(function(err){
+            alert('发生错误');
+        }) 
+    }
+    function clear(){
+        $('#province').val('');
+        $('#city').val('');
+        $('#department').val('');
+        $('#year').val('');
+        $('#contentkewords').val('');
+        $('#participatkewords').val('');
+    }
+    function displayPost(data){
+
+    }
  </script>
 {% endblock %}

@@ -170,6 +170,15 @@ class adminController extends Controller {
         }
       }
 
+      async findPost(){
+        var req = await this.ctx.request.body;
+        console.log(req);
+        var posts = await this.ctx.service.admin.findPost(req);
+        // console.log(posts);
+        this.ctx.body = {posts: posts};
+        this.ctx.status = 200;
+      }
+
       async medialist() {
         var media = await this.ctx.service.admin.getAllMedia();
         await this.ctx.render('admin/medialist.html', {

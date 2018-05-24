@@ -60,6 +60,7 @@ module.exports = app => {
   router.post('/admin/updatepost', auth,controller.admin.adminPost.postUpdate);
   router.post('/admin/savepost', auth,controller.admin.adminPost.postSave);
   router.post('/admin/deletepost', auth,controller.admin.adminPost.postDelete);
+  router.post('/admin/findPost', auth,controller.admin.adminPost.findPost);
 
   router.get('/admin/medialist',auth, controller.admin.adminPost.medialist);
   router.get('/admin/media',auth, controller.admin.adminPost.mediadetail);

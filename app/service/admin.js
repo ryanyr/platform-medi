@@ -178,6 +178,54 @@ class PostsListService extends Service{
         return posts;
     }
 
+    async findPost(req){
+        var params = req;
+        var queryObj = {};
+        var province = params.province;
+        var city = params.city;
+        var department = params.department;
+        var year = params.year;
+        var contentkewords = params.contentkewords;
+        var participatkewords = params.participatkewords;
+        var start;
+        var fin;
+        if(!!province){
+            queryObj.province = province;
+        }
+        if(!!city){
+            queryObj.city = city;
+        }
+        if(!!department){
+            queryObj.department = department;
+        }
+        if(!!contentkewords){
+            queryObj.content = {$like:'%'+contentkewords+'%'};
+        }
+        if(!!participatkewords){
+            queryObj.participant_id = {$like:'%'+participatkewords+'%'};
+        }
+        if(!!year){
+            start = new Date(year,0,1,0,0,0);
+            fin = new Date(year,11,31,23,59,59);
+            queryObj.meeting_time = {
+                $between:[start,fin]
+            };
+        }
+        /* if(!!month){
+            queryObj.month = month;
+        } */
+        // console.log(queryObj);
+        const posts = await this.app.model.Post.findAll({
+            where: queryObj
+            //limit:10
+        });        
+        for(var i=0; i<posts.length; i++){             
+            var formatTime = format.formatDate(posts[i].meeting_time);
+            posts[i].meetingTime = formatTime;
+        }
+        return posts;
+    }
+
     async getPostDetail(data){
         var postid = data.id;
         // console.log(postid);
