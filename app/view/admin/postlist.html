@@ -53,7 +53,7 @@
         <div class="row"></div>
             <div class="col-xs-12">
                 <span class='btn searchbtn' onclick="searchPost()">查询</span>
-                <span class='btn resetbtn' onclick="clear()">重置</span>
+                <span class='btn resetbtn' onclick="clearSearch()">重置</span>
                 <a href="/admin/addpost"><span class='btn addbtn'>新增</span></a>
             </div>  
         </div>    
@@ -73,7 +73,7 @@
                 <th scope="col">操作</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id='tbody'>
                 {% for post in posts %}
                 <tr class="datarow">
                     <td>{{post.title}}</td>
@@ -95,11 +95,13 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">上一页</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+              <li class="page-item"><a class="page-link">首页</a></li>
+              <li class="page-item"><a class="page-link">上一页</a></li>
+              <li class="page-item"><a class="page-link">1</a></li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">3</a></li>
+              <li class="page-item"><a class="page-link">下一页</a></li>
+              <li class="page-item"><a class="page-link">末页</a></li>
             </ul>
           </nav>
     </div>  
@@ -163,22 +165,50 @@
             contentType: 'application/json',
             processData: false,
         }).done(function(res){
-            var data = res;
+            var data = res.posts;
+            displayPost(data);
             
         }).fail(function(err){
             alert('发生错误');
         }) 
     }
-    function clear(){
+    function clearSearch(){
+        // alert(1);
         $('#province').val('');
         $('#city').val('');
         $('#department').val('');
         $('#year').val('');
         $('#contentkewords').val('');
         $('#participatkewords').val('');
+        window.history.go(-1);
     }
     function displayPost(data){
-
-    }
+        $('#tbody').empty();
+        var post = '';
+        if(data.length>0){
+            for(var i=0;i<data.length;i++){
+                var item = '<tr class="datarow">'+
+                    '<td>'+data[i].title+'</td>'+
+                    '<td>'+data[i].department+'</td>'+
+                    '<td>'+data[i].intro+'</td>'+
+                    '<td>'+data[i].participant_id+'</td>'+
+                    '<td>'+data[i].province+'</td>'+
+                    '<td>'+data[i].city+'</td>'+
+                    '<td>'+data[i].author+'</td>'+
+                    '<td>'+data[i].meeting_time+'</td>'+
+                    '<td>'+
+                        '<a href="/admin/post?id='+data[i].id+'"><span class="detail" dataid='+data[i].id+'>查看</span></a>'+
+                        '<a href="/admin/editpost?id='+data[i].id+'"><span class="edit" dataid='+data[i].id+'>编辑</span></a>'+
+                        '<a><span class="delete" id="deleteBtn" onclick="getid(this)" data-toggle="modal" data-target="#dialog" dataid='+data[i].id+'>删除</span></a>'+
+                    '</td>'+
+                '</tr>';
+                post +=item;
+            }
+        }else{
+            post = '<tr class="datarow">暂无数据</tr>';
+        }
+        
+        $('#tbody').html(post);
+        }
  </script>
 {% endblock %}
