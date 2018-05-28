@@ -86,10 +86,21 @@ class adminController extends Controller {
       }
 
       async postlist() {
-        var posts = await this.ctx.service.admin.getFPPost();
+        var currentPage = 1;
+        var pagesize = 1;
+        var pageinfo = {
+          currentPage:currentPage,
+          pagesize:pagesize
+        };        
+        var data = await this.ctx.service.admin.getFPPost(pageinfo);
+        var posts = data.posts;
+        var count = data.count;
+        var totalsize = Math.ceil(count/pagesize);
         // console.log(posts);
         await this.ctx.render('admin/postlist.html', {
           posts:posts,
+          count:count,
+          totalsize:totalsize,
           title: '会议管理',
         });
     

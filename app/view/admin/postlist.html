@@ -94,14 +94,25 @@
             </tbody>
         </table>
         <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link">首页</a></li>
-              <li class="page-item"><a class="page-link">上一页</a></li>
-              <li class="page-item"><a class="page-link">1</a></li>
-              <li class="page-item"><a class="page-link">2</a></li>
-              <li class="page-item"><a class="page-link">3</a></li>
-              <li class="page-item"><a class="page-link">下一页</a></li>
-              <li class="page-item"><a class="page-link">末页</a></li>
+            <ul class="pagination">              
+              {% if totalsize==1 %} 
+              <li class="page-item active"><a class="page-link" pagenum="">1</a></li>
+              {% elseif totalsize==2 %} 
+              <li class="page-item active"><a class="page-link" pagenum="1">1</a></li>
+              <li class="page-item"><a class="page-link" pagenum="2">2</a></li>
+              {% elseif totalsize==3 %} 
+              <li class="page-item active"><a class="page-link" pagenum="1">1</a></li>
+              <li class="page-item "><a class="page-link" pagenum="2">2</a></li>
+              <li class="page-item"><a class="page-link" pagenum="3">3</a></li>
+              {% elseif totalsize>3 %} 
+              <li class="page-item"><a class="page-link" pagenum="1" onclick="goPage(this)">首页</a></li>
+              <!-- <li class="page-item"><a class="page-link" pagenum="pre" onclick="goPage(this)">上一页</a></li> -->
+              <li class="page-item active"><a class="page-link" pagenum="1" id="p1" onclick="goPage(this)">1</a></li>
+              <li class="page-item"><a class="page-link" pagenum="2" id="p2" onclick="goPage(this)">2</a></li>
+              <li class="page-item"><a class="page-link" pagenum="3" id="p3" onclick="goPage(this)">3</a></li>
+              <!-- <li class="page-item"><a class="page-link" pagenum="next" onclick="goPage(this)">下一页</a></li> -->
+              <li class="page-item"><a class="page-link" pagenum="{{totalsize}}" id="totalsize" onclick="goPage(this)">末页</a></li>
+            {% endif %}
             </ul>
           </nav>
     </div>  
@@ -144,6 +155,7 @@
     });
     function searchPost(){
         var searchCondition = {
+            currentpage:1,
             province:$('#province').val(),
             city:$('#city').val(),
             department:$('#department').val(),
@@ -209,6 +221,56 @@
         }
         
         $('#tbody').html(post);
+    }
+    function goPage(obj){
+        var currentpage = 1;
+        var $this = $(obj);
+        var pagenum = parseInt($this.attr('pagenum'));
+        var totalsize = parseInt($('#totalsize').attr('pagenum'));
+        if(pagenum==1||pagenum==2){
+            $this.parents('li').addClass('active').siblings('li').removeClass('active');
+        }else{
+            if(pagenum+1<=totalsize){
+                $('#p1').attr('pagenum',pagenum-1).html(pagenum-1);
+                $('#p2').attr('pagenum',pagenum).html(pagenum);
+                $('#p3').attr('pagenum',pagenum+1).html(pagenum+1);
+                $('#p2').parents('li').addClass('active').siblings('li').removeClass('active');
+            }else if(pagenum==totalsize){
+                $('#p3').parents('li').addClass('active').siblings('li').removeClass('active');
+            }
+            
         }
+        console.log(pagenum);
+        currentpage = pagenum;
+        var searchCondition = {
+            currentpage:currentpage,
+            province:$('#province').val(),
+            city:$('#city').val(),
+            department:$('#department').val(),
+            year:$('#year').val(),
+            contentkewords:$('#contentkewords').val(),
+            participatkewords:$('#participatkewords').val()
+        }        
+        $.ajax({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader('x-csrf-token', csrftoken);
+                }
+            },
+            url:'findPost',
+            method:'post',
+            datatype: 'json',
+            // contentType:'application/x-www-form-urlencoded',
+            data : JSON.stringify(searchCondition),
+            contentType: 'application/json',
+            processData: false,
+        }).done(function(res){
+            var data = res.posts;
+            displayPost(data);
+            
+        }).fail(function(err){
+            alert('发生错误');
+        }) 
+    }
  </script>
 {% endblock %}

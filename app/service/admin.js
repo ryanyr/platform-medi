@@ -44,15 +44,24 @@ class PostsListService extends Service{
         
     }
 
-    async getFPPost(){
-        const posts = await this.app.model.Post.findAll({
-            limit:10
-        });        
+    async getFPPost(data){
+        var offset = (data.currentPage - 1)*data.pagesize;
+        var limit = data.pagesize;
+        const result = await this.app.model.Post.findAndCountAll({
+            offset:offset,
+            limit:limit
+        });  
+        const posts = result.rows;
+        const count = result.count;    
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
             posts[i].meetingTime = formatTime;
         }
-        return posts;
+        var data = {
+            posts:posts,
+            count:count
+        };
+        return data;
     }
 
     async getAllDistricts(){
@@ -181,6 +190,8 @@ class PostsListService extends Service{
     async findPost(req){
         var params = req;
         var queryObj = {};
+        var pagesize = 1;
+        var offset = (params.currentpage-1)*pagesize;
         var province = params.province;
         var city = params.city;
         var department = params.department;
@@ -216,8 +227,9 @@ class PostsListService extends Service{
         } */
         // console.log(queryObj);
         const posts = await this.app.model.Post.findAll({
-            where: queryObj
-            //limit:10
+            where: queryObj,
+            limit:pagesize,
+            offset:offset
         });        
         for(var i=0; i<posts.length; i++){             
             var formatTime = format.formatDate(posts[i].meeting_time);
