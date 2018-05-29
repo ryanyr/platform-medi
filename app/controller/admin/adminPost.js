@@ -86,8 +86,8 @@ class adminController extends Controller {
       }
 
       async postlist() {
+        var pagesize = this.ctx.service.navData.pageSize;
         var currentPage = 1;
-        var pagesize = 1;
         var pageinfo = {
           currentPage:currentPage,
           pagesize:pagesize

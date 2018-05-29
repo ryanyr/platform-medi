@@ -190,7 +190,7 @@ class PostsListService extends Service{
     async findPost(req){
         var params = req;
         var queryObj = {};
-        var pagesize = 1;
+        var pagesize = dataSource.pageSize;
         var offset = (params.currentpage-1)*pagesize;
         var province = params.province;
         var city = params.city;

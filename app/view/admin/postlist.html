@@ -98,12 +98,12 @@
               {% if totalsize==1 %} 
               <li class="page-item active"><a class="page-link" pagenum="">1</a></li>
               {% elseif totalsize==2 %} 
-              <li class="page-item active"><a class="page-link" pagenum="1">1</a></li>
-              <li class="page-item"><a class="page-link" pagenum="2">2</a></li>
+              <li class="page-item active"><a class="page-link" pagenum="1" onclick="goPage(this)">1</a></li>
+              <li class="page-item"><a class="page-link" pagenum="2" onclick="goPage(this)">2</a></li>
               {% elseif totalsize==3 %} 
-              <li class="page-item active"><a class="page-link" pagenum="1">1</a></li>
-              <li class="page-item "><a class="page-link" pagenum="2">2</a></li>
-              <li class="page-item"><a class="page-link" pagenum="3">3</a></li>
+              <li class="page-item active"><a class="page-link" pagenum="1" onclick="goPage(this)">1</a></li>
+              <li class="page-item "><a class="page-link" pagenum="2" onclick="goPage(this)">2</a></li>
+              <li class="page-item"><a class="page-link" pagenum="3" onclick="goPage(this)">3</a></li>
               {% elseif totalsize>3 %} 
               <li class="page-item"><a class="page-link" pagenum="0" onclick="goPage(this)">首页</a></li>
               <!-- <li class="page-item"><a class="page-link" pagenum="pre" onclick="goPage(this)">上一页</a></li> -->
@@ -226,7 +226,7 @@
         var currentpage = 1;
         var $this = $(obj);
         var pagenum = parseInt($this.attr('pagenum'));
-        var totalsize = parseInt($('#totalsize').attr('pagenum'));
+        var totalsize = {{totalsize}};
         if(pagenum==0){
             $('#p1').attr('pagenum',1).html(1);
             $('#p2').attr('pagenum',2).html(2);
@@ -237,6 +237,8 @@
             if(pagenum+1<=totalsize){
 
             }
+            $this.parents('li').addClass('active').siblings('li').removeClass('active');
+        }else if(pagenum==3){
             $this.parents('li').addClass('active').siblings('li').removeClass('active');
         }else{
             if(pagenum+1<=totalsize){
