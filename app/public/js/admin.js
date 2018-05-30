@@ -68,7 +68,7 @@ function doLogin(){
         if(res.islogin){
             console.log(1);
             console.log(data);
-            window.location.pathname ='admin/index';
+            window.location.pathname ='admin/postlist';
          }else{
              alert(res.msg);
          }        
